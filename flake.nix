@@ -76,13 +76,23 @@
 
         checks = packages;
 
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            statix
-            deadnix
-            nixpkgs-fmt
-            pre-commit
-          ];
+        devShells = {
+          ci-lint = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              statix
+              deadnix
+              nixpkgs-fmt
+              pre-commit
+            ];
+          };
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              statix
+              deadnix
+              nixpkgs-fmt
+              pre-commit
+            ];
+          };
         };
       }));
 }

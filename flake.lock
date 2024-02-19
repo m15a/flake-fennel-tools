@@ -1,0 +1,151 @@
+{
+  "nodes": {
+    "faith": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708202529,
+        "narHash": "sha256-obpaX0d1ewd2cVdKcLY/TkspoDlvVIDsiU9KxWuylfk=",
+        "owner": "~technomancy",
+        "repo": "faith",
+        "rev": "a466fe7c46e4866f18b002ef6cb1e7d5d20e687b",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~technomancy",
+        "ref": "main",
+        "repo": "faith",
+        "type": "sourcehut"
+      }
+    },
+    "fennel-stable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701458211,
+        "narHash": "sha256-38CUIMlT5KJs+r/BKriLNJMC8ZevVBYcNyExiYvhJEo=",
+        "owner": "~technomancy",
+        "repo": "fennel",
+        "rev": "a804c7665961a05ab36670704504923749463775",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~technomancy",
+        "ref": "1.4.0",
+        "repo": "fennel",
+        "type": "sourcehut"
+      }
+    },
+    "fennel-unstable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708209059,
+        "narHash": "sha256-cQTc+5X6A/4ckQkjzxYz7wbi/9j7NAV2KgTturX6dWU=",
+        "owner": "~technomancy",
+        "repo": "fennel",
+        "rev": "f3e30aa978c40da909d9740eae54d5138fc612af",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~technomancy",
+        "ref": "main",
+        "repo": "fennel",
+        "type": "sourcehut"
+      }
+    },
+    "fenneldoc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1693330851,
+        "narHash": "sha256-qKoTZf5ra574c0lPFXcDdbe2pUY9bSEwuGnhXI15Phw=",
+        "owner": "andreyorst",
+        "repo": "fenneldoc",
+        "rev": "7960056a31db6c28d0c2f3eb76e6bf88a90e436e",
+        "type": "gitlab"
+      },
+      "original": {
+        "owner": "andreyorst",
+        "ref": "master",
+        "repo": "fenneldoc",
+        "type": "gitlab"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1705309234,
+        "narHash": "sha256-uNRRNRKmJyCRC/8y1RqBkqWBLM034y4qN7EprSdmgyA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "1ef2e671c3b0c19053962c07dbda38332dcebf26",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "fnlfmt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1706065499,
+        "narHash": "sha256-DfnN8B6ZwP7Io6ax4H5lmPbe5Wkv6yKkErqxk81OL5o=",
+        "owner": "~technomancy",
+        "repo": "fnlfmt",
+        "rev": "2e1d288e90acd62904eec2cff0dee1f1956db9e2",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~technomancy",
+        "ref": "main",
+        "repo": "fnlfmt",
+        "type": "sourcehut"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1708247094,
+        "narHash": "sha256-H2VS7VwesetGDtIaaz4AMsRkPoSLEVzL/Ika8gnbUnE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "045b51a3ae66f673ed44b5bbd1f4a341d96703bf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "faith": "faith",
+        "fennel-stable": "fennel-stable",
+        "fennel-unstable": "fennel-unstable",
+        "fenneldoc": "fenneldoc",
+        "flake-utils": "flake-utils",
+        "fnlfmt": "fnlfmt",
+        "nixpkgs": "nixpkgs"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

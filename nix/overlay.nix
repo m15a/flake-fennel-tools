@@ -1,17 +1,17 @@
-{ inputs, fennel-stable-version, fennel-unstable-version }:
+{ inputs, versions }:
 
 final: prev:
 
 let
-  fennelWith = { lua, version, src }:
+  fennelWith = { version, src, lua }:
     final.callPackage ./pkgs/fennel {
-      inherit lua version src;
+      inherit version src lua;
     };
 
-  faithWith = { fennel }:
+  faithWith = { version, fennel }:
     final.callPackage ./pkgs/faith {
       src = inputs.faith;
-      inherit fennel;
+      inherit version fennel;
     };
 in
 
@@ -19,60 +19,60 @@ in
   fennel = {
     stable = {
       luajit = fennelWith {
-        lua = final.luajit;
-        version = fennel-stable-version;
+        version = versions.fennel-stable;
         src = inputs.fennel-stable;
+        lua = final.luajit;
       };
       lua5_1 = fennelWith {
-        lua = final.lua5_1;
-        version = fennel-stable-version;
+        version = versions.fennel-stable;
         src = inputs.fennel-stable;
+        lua = final.lua5_1;
       };
 
       lua5_2 = fennelWith {
-        lua = final.lua5_2;
-        version = fennel-stable-version;
+        version = versions.fennel-stable;
         src = inputs.fennel-stable;
+        lua = final.lua5_2;
       };
 
       lua5_3 = fennelWith {
-        lua = final.lua5_3;
-        version = fennel-stable-version;
+        version = versions.fennel-stable;
         src = inputs.fennel-stable;
+        lua = final.lua5_3;
       };
 
       lua5_4 = fennelWith {
-        lua = final.lua5_4;
-        version = fennel-stable-version;
+        version = versions.fennel-stable;
         src = inputs.fennel-stable;
+        lua = final.lua5_4;
       };
 
     };
     unstable = {
       luajit = fennelWith {
-        lua = final.luajit;
-        version = fennel-unstable-version;
+        version = versions.fennel-unstable;
         src = inputs.fennel-unstable;
+        lua = final.luajit;
       };
       lua5_1 = fennelWith {
-        lua = final.lua5_1;
-        version = fennel-unstable-version;
+        version = versions.fennel-unstable;
         src = inputs.fennel-unstable;
+        lua = final.lua5_1;
       };
       lua5_2 = fennelWith {
-        lua = final.lua5_2;
-        version = fennel-unstable-version;
+        version = versions.fennel-unstable;
         src = inputs.fennel-unstable;
+        lua = final.lua5_2;
       };
       lua5_3 = fennelWith {
-        lua = final.lua5_3;
-        version = fennel-unstable-version;
+        version = versions.fennel-unstable;
         src = inputs.fennel-unstable;
+        lua = final.lua5_3;
       };
       lua5_4 = fennelWith {
-        lua = final.lua5_4;
-        version = fennel-unstable-version;
+        version = versions.fennel-unstable;
         src = inputs.fennel-unstable;
+        lua = final.lua5_4;
       };
     };
   };
@@ -80,46 +80,58 @@ in
   faith = {
     stable = {
       luajit = faithWith {
+        version = versions.faith;
         fennel = final.fennel.stable.luajit;
       };
       lua5_1 = faithWith {
+        version = versions.faith;
         fennel = final.fennel.stable.lua5_1;
       };
       lua5_2 = faithWith {
+        version = versions.faith;
         fennel = final.fennel.stable.lua5_2;
       };
       lua5_3 = faithWith {
+        version = versions.faith;
         fennel = final.fennel.stable.lua5_3;
       };
       lua5_4 = faithWith {
+        version = versions.faith;
         fennel = final.fennel.stable.lua5_4;
       };
     };
     unstable = {
       luajit = faithWith {
+        version = versions.faith;
         fennel = final.fennel.unstable.luajit;
       };
       lua5_1 = faithWith {
+        version = versions.faith;
         fennel = final.fennel.unstable.lua5_1;
       };
       lua5_2 = faithWith {
+        version = versions.faith;
         fennel = final.fennel.unstable.lua5_2;
       };
       lua5_3 = faithWith {
+        version = versions.faith;
         fennel = final.fennel.unstable.lua5_3;
       };
       lua5_4 = faithWith {
+        version = versions.faith;
         fennel = final.fennel.unstable.lua5_4;
       };
     };
   };
 
   fnlfmt = final.callPackage ./pkgs/fnlfmt {
+    version = versions.fnlfmt;
     src = inputs.fnlfmt;
     lua = final.luajit;
   };
 
   fenneldoc = final.callPackage ./pkgs/fenneldoc {
+    version = versions.fenneldoc;
     src = inputs.fenneldoc;
     lua = final.lua5_4;
   };

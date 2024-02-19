@@ -1,10 +1,8 @@
-{ src, stdenv, lua }:
+{ version, src, lua, stdenv }:
 
 stdenv.mkDerivation {
   pname = "fnlfmt";
-  version = "0.3.2-dev";
-
-  inherit src;
+  inherit version src;
 
   nativeBuildInputs = [
     lua

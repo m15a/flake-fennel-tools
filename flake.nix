@@ -26,11 +26,10 @@
 
   outputs = { self, nixpkgs, flake-utils, ... } @ inputs:
     let
-      fennel-stable-version = "1.4.0";
-      fennel-unstable-version = "1.4.1-dev";
+      versions = import ./nix/versions.nix;
 
       fennel-tools = import ./nix/overlay.nix {
-        inherit inputs fennel-stable-version fennel-unstable-version;
+        inherit inputs versions;
       };
     in
     {

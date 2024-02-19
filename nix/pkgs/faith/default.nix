@@ -1,10 +1,8 @@
-{ src, stdenv, fennel }:
+{ version, src, stdenv, fennel }:
 
 stdenv.mkDerivation {
   pname = "faith";
-  version = "0.1.3-dev";
-
-  inherit src;
+  inherit version src;
 
   nativeBuildInputs = [
     fennel

@@ -1,10 +1,8 @@
-{ src, stdenv, lua }:
+{ version, src, lua, stdenv }:
 
 stdenv.mkDerivation rec {
   pname = "fenneldoc";
-  version = "1.0.1-dev";
-
-  inherit src;
+  inherit version src;
 
   nativeBuildInputs = [
     lua

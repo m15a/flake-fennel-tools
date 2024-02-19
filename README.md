@@ -14,7 +14,7 @@ etc. (find more in [Fennel wiki][7]).
 
 Some of these tools are missing in [nixpkgs][8][^1].
 This repository aims to help Fennel developers using Nix by providing a [Nix flake][9],
-which ships with Fennel development tools including those missing ones.
+which ships Fennel development tools including those missing ones.
 
 Moreover, this flake provides Fennel development version (i.e., `main` branch head).
 So it would help you test your Fennel application/library against the cutting edge.

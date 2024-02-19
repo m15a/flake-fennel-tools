@@ -164,4 +164,4 @@ For more information, read the document in [Fenneldoc's repository][6].
 [8]: https://github.com/NixOS/nixpkgs
 [9]: https://nix.dev/concepts/flakes
 
-[^1]: fnlfmt is available in nixpkgs as of Feb 2024.
+[^1]: `fnlfmt` and `fennel-ls` are available in nixpkgs as of Feb 2024.

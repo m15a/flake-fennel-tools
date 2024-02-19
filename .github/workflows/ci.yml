@@ -22,4 +22,4 @@ jobs:
 
       - name: Check formats
         run: |
-          nix develop --command bash -c "pre-commit run --all-files"
+          nix develop .#ci-lint --command bash -c "pre-commit run --all-files"

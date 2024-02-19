@@ -74,6 +74,99 @@
           inherit (pkgs) fnlfmt fenneldoc;
         };
 
+        apps = with flake-utils.lib; rec {
+          fennel-stable-luajit = mkApp {
+            drv = self.packages.${system}.fennel-stable-luajit;
+            name = "fennel";
+          };
+          fennel-stable-lua5_1 = mkApp {
+            drv = self.packages.${system}.fennel-stable-lua5_1;
+            name = "fennel";
+          };
+          fennel-stable-lua5_2 = mkApp {
+            drv = self.packages.${system}.fennel-stable-lua5_2;
+            name = "fennel";
+          };
+          fennel-stable-lua5_3 = mkApp {
+            drv = self.packages.${system}.fennel-stable-lua5_3;
+            name = "fennel";
+          };
+          fennel-stable-lua5_4 = mkApp {
+            drv = self.packages.${system}.fennel-stable-lua5_4;
+            name = "fennel";
+          };
+          fennel-unstable-luajit = mkApp {
+            drv = self.packages.${system}.fennel-unstable-luajit;
+            name = "fennel";
+          };
+          fennel-unstable-lua5_1 = mkApp {
+            drv = self.packages.${system}.fennel-unstable-lua5_1;
+            name = "fennel";
+          };
+          fennel-unstable-lua5_2 = mkApp {
+            drv = self.packages.${system}.fennel-unstable-lua5_2;
+            name = "fennel";
+          };
+          fennel-unstable-lua5_3 = mkApp {
+            drv = self.packages.${system}.fennel-unstable-lua5_3;
+            name = "fennel";
+          };
+          fennel-unstable-lua5_4 = mkApp {
+            drv = self.packages.${system}.fennel-unstable-lua5_4;
+            name = "fennel";
+          };
+
+          faith-stable-luajit = mkApp {
+            drv = self.packages.${system}.faith-stable-luajit;
+            name = "faith";
+          };
+          faith-stable-lua5_1 = mkApp {
+            drv = self.packages.${system}.faith-stable-lua5_1;
+            name = "faith";
+          };
+          faith-stable-lua5_2 = mkApp {
+            drv = self.packages.${system}.faith-stable-lua5_2;
+            name = "faith";
+          };
+          faith-stable-lua5_3 = mkApp {
+            drv = self.packages.${system}.faith-stable-lua5_3;
+            name = "faith";
+          };
+          faith-stable-lua5_4 = mkApp {
+            drv = self.packages.${system}.faith-stable-lua5_4;
+            name = "faith";
+          };
+          faith-unstable-luajit = mkApp {
+            drv = self.packages.${system}.faith-unstable-luajit;
+            name = "faith";
+          };
+          faith-unstable-lua5_1 = mkApp {
+            drv = self.packages.${system}.faith-unstable-lua5_1;
+            name = "faith";
+          };
+          faith-unstable-lua5_2 = mkApp {
+            drv = self.packages.${system}.faith-unstable-lua5_2;
+            name = "faith";
+          };
+          faith-unstable-lua5_3 = mkApp {
+            drv = self.packages.${system}.faith-unstable-lua5_3;
+            name = "faith";
+          };
+          faith-unstable-lua5_4 = mkApp {
+            drv = self.packages.${system}.faith-unstable-lua5_4;
+            name = "faith";
+          };
+
+          fnlfmt = mkApp {
+            drv = self.packages.${system}.fnlfmt;
+            name = "fnlfmt";
+          };
+          fenneldoc = mkApp {
+            drv = self.packages.${system}.fenneldoc;
+            name = "fenneldoc";
+          };
+        };
+
         checks = packages;
 
         devShells = {

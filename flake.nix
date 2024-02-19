@@ -59,6 +59,18 @@
           fennel-unstable-lua5_3 = pkgs.fennel.unstable.lua5_3;
           fennel-unstable-lua5_4 = pkgs.fennel.unstable.lua5_4;
 
+          faith-stable-luajit = pkgs.faith.stable.luajit;
+          faith-stable-lua5_1 = pkgs.faith.stable.lua5_1;
+          faith-stable-lua5_2 = pkgs.faith.stable.lua5_2;
+          faith-stable-lua5_3 = pkgs.faith.stable.lua5_3;
+          faith-stable-lua5_4 = pkgs.faith.stable.lua5_4;
+
+          faith-unstable-luajit = pkgs.faith.unstable.luajit;
+          faith-unstable-lua5_1 = pkgs.faith.unstable.lua5_1;
+          faith-unstable-lua5_2 = pkgs.faith.unstable.lua5_2;
+          faith-unstable-lua5_3 = pkgs.faith.unstable.lua5_3;
+          faith-unstable-lua5_4 = pkgs.faith.unstable.lua5_4;
+
           inherit (pkgs) fnlfmt fenneldoc;
         };
 

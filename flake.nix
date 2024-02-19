@@ -83,6 +83,12 @@
           ci-versions = pkgs.mkShell {
             buildInputs = [
               pkgs.fennel-stable-luajit
+              (pkgs.fennel-unstable-luajit.overrideAttrs (_: {
+                postInstall = ''
+                  mv $out/bin/fennel $out/bin/fennel-unstable
+                '';
+              }))
+              pkgs.fnlfmt
             ];
             FENNEL_PATH = "${pkgs.faith}/bin/?";
           };

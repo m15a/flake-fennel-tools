@@ -10,10 +10,10 @@ FAITH_EXPECTED="$(grep faith nix/versions.nix | cut -d'"' -f2)"
 FNLFMT_EXPECTED="$(grep fnlfmt nix/versions.nix | cut -d'"' -f2)"
 # FENNELDOC_EXPECTED="$(grep fenneldoc nix/versions.nix | cut -d'"' -f2)"
 
-FENNEL_STABLE_ACTUAL="$(nix run .#fennel-stable-luajit -- --version | cut -d' ' -f2)"
-FENNEL_UNSTABLE_ACTUAL="$(nix run .#fennel-unstable-luajit -- --version | cut -d' ' -f2)"
-FAITH_ACTUAL="$(nix run .#fennel-stable-luajit -- --eval "(print (. (require :faith) :version))")"
-FNLFMT_ACTUAL="$(nix run .#fnlfmt -- --version | cut -d' ' -f3)"
+FENNEL_STABLE_ACTUAL="$(nix run .#fennel-stable-luajit -- --version 2>/dev/null | cut -d' ' -f2)"
+FENNEL_UNSTABLE_ACTUAL="$(nix run .#fennel-unstable-luajit -- --version 2>/dev/null | cut -d' ' -f2)"
+FAITH_ACTUAL="$(nix run .#fennel-stable-luajit -- --eval "(print (. (require :faith) :version))" 2>/dev/null)"
+FNLFMT_ACTUAL="$(nix run .#fnlfmt -- --version 2>/dev/null | cut -d' ' -f3)"
 
 if [ "$FENNEL_STABLE_EXPECTED" = "$FENNEL_STABLE_ACTUAL" ]
 then

@@ -177,6 +177,9 @@
               pre-commit
             ];
           };
+          ci-versions = pkgs.mkShell {
+            FENNEL_PATH = "${pkgs.faith.stable.luajit}/bin/?";
+          };
           default = pkgs.mkShell {
             buildInputs = with pkgs; [
               statix

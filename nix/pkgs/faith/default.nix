@@ -1,12 +1,8 @@
-{ version, src, stdenv, fennel }:
+{ version, src, stdenv }:
 
 stdenv.mkDerivation {
   pname = "faith";
   inherit version src;
-
-  nativeBuildInputs = [
-    fennel
-  ];
 
   buildPhase = ''
     mkdir bin
@@ -15,13 +11,10 @@ stdenv.mkDerivation {
         cat faith.fnl
     } > bin/faith
     chmod +x bin/faith
-    patchShebangs .
   '';
 
   installPhase = ''
     mkdir -p $out/bin
     install -m755 bin/faith -t $out/bin/
   '';
-
-  passthru = { inherit fennel; };
 }

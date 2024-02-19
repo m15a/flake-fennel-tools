@@ -28,13 +28,6 @@ let
       lua = final.${luaVersion};
     };
 
-  buildFaith = { fennelVersion, luaVersion }:
-    final.callPackage ./pkgs/faith {
-      version = versions.faith;
-      src = inputs.faith;
-      fennel = final."fennel-${fennelVersion}-${luaVersion}";
-    };
-
   buildPackageSet = { pname, builder }:
     builtins.listToAttrs
       (map
@@ -49,10 +42,11 @@ in
 (buildPackageSet {
   pname = "fennel";
   builder = buildFennel;
-}) // (buildPackageSet {
-  pname = "faith";
-  builder = buildFaith;
 }) // {
+  faith = final.callPackage ./pkgs/faith {
+    version = versions.faith;
+    src = inputs.faith;
+  };
   fnlfmt = final.callPackage ./pkgs/fnlfmt {
     version = versions.fnlfmt;
     src = inputs.fnlfmt;

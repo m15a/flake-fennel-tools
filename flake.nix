@@ -59,18 +59,7 @@
             fennel-unstable-lua5_3
             fennel-unstable-lua5_4
 
-            faith-stable-luajit
-            faith-stable-lua5_1
-            faith-stable-lua5_2
-            faith-stable-lua5_3
-            faith-stable-lua5_4
-
-            faith-unstable-luajit
-            faith-unstable-lua5_1
-            faith-unstable-lua5_2
-            faith-unstable-lua5_3
-            faith-unstable-lua5_4
-
+            faith
             fnlfmt
             fenneldoc;
         };
@@ -92,7 +81,10 @@
             ];
           };
           ci-versions = pkgs.mkShell {
-            FENNEL_PATH = "${pkgs.faith-stable-luajit}/bin/?";
+            buildInputs = [
+              pkgs.fennel-stable-luajit
+            ];
+            FENNEL_PATH = "${pkgs.faith}/bin/?";
           };
           default = pkgs.mkShell {
             buildInputs = with pkgs; [

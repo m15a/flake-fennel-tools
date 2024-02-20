@@ -148,7 +148,7 @@ For more information, read the document in [Fennel Format's repository][5].
 
 A Fennel API documentation generator. Attribute:
 
-```
+```nix
 pkgs.${system}.fenneldoc
 ```
 

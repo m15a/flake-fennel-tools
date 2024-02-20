@@ -114,6 +114,7 @@
                 }))
               ];
               FENNEL_PATH = "${pkgs.faith}/bin/?;${faith-unstable}/bin/?";
+              FENNELDOC_PATH = "${pkgs.fenneldoc}/bin/fenneldoc";
             };
           default = pkgs.mkShell {
             buildInputs = with pkgs; [

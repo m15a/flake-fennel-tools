@@ -52,8 +52,13 @@ in
     src = inputs.faith;
   };
   fnlfmt = final.callPackage ./pkgs/fnlfmt {
-    version = versions.fnlfmt;
-    src = inputs.fnlfmt;
+    version = versions.fnlfmt-stable;
+    src = inputs.fnlfmt-stable;
+    lua = final.luajit;
+  };
+  fnlfmt-unstable = final.callPackage ./pkgs/fnlfmt {
+    version = versions.fnlfmt-unstable;
+    src = inputs.fnlfmt-unstable;
     lua = final.luajit;
   };
   fenneldoc = final.callPackage ./pkgs/fenneldoc {

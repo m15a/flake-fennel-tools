@@ -131,10 +131,12 @@ For more information, take a look at the [Faith's repository][4].
 
 ### Fennel Format
 
-A Fennel formatter. Attribute:
+A Fennel formatter. Attributes:
 
-```
-pkgs.${system}.fnlfmt
+```nix
+pkgs.${system}.fnlfmt # stable version (0.3.1 as of Feb 2024)
+# or
+pkgs.${system}.fnlfmt-unstable # main branch head
 ```
 
 Nothing special has been done for Nix usage. Install it and format codes as usual.

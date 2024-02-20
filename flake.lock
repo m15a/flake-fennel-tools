@@ -1,6 +1,23 @@
 {
   "nodes": {
-    "faith": {
+    "faith-stable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1690567838,
+        "narHash": "sha256-B16pLqefzMo4ZLghR+v+Iwn3my0J/ixydMmvLjPKL+I=",
+        "owner": "~technomancy",
+        "repo": "faith",
+        "rev": "4da31a0805defb120a500226960f51bf54a4b3a8",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~technomancy",
+        "ref": "0.1.2",
+        "repo": "faith",
+        "type": "sourcehut"
+      }
+    },
+    "faith-unstable": {
       "flake": false,
       "locked": {
         "lastModified": 1708202529,
@@ -138,7 +155,8 @@
     },
     "root": {
       "inputs": {
-        "faith": "faith",
+        "faith-stable": "faith-stable",
+        "faith-unstable": "faith-unstable",
         "fennel-stable": "fennel-stable",
         "fennel-unstable": "fennel-unstable",
         "fenneldoc": "fenneldoc",

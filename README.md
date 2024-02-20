@@ -95,10 +95,12 @@ where `${LUA}` is either one of `luajit`, `lua5_1`, `lua5_2`, `lua5_3`, and `lua
 
 ### Faith
 
-A testing library. Attribute:
+A testing library. Attributes:
 
-```
-pkgs.${system}.faith
+```nix
+pkgs.${system}.faith # stable version (0.1.2 as of Feb 2024)
+# or
+pkgs.${system}.faith-unstable # main branch head
 ```
 
 In this flake, the package contains a runnable script of Faith,

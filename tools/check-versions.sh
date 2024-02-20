@@ -6,14 +6,16 @@ ANY_ERROR=false
 
 FENNEL_STABLE_EXPECTED="$(grep fennel-stable nix/versions.nix | cut -d'"' -f2)"
 FENNEL_UNSTABLE_EXPECTED="$(grep fennel-unstable nix/versions.nix | cut -d'"' -f2)"
-FAITH_EXPECTED="$(grep faith nix/versions.nix | cut -d'"' -f2)"
+FAITH_STABLE_EXPECTED="$(grep faith-stable nix/versions.nix | cut -d'"' -f2)"
+FAITH_UNSTABLE_EXPECTED="$(grep faith-unstable nix/versions.nix | cut -d'"' -f2)"
 FNLFMT_STABLE_EXPECTED="$(grep fnlfmt-stable nix/versions.nix | cut -d'"' -f2)"
 FNLFMT_UNSTABLE_EXPECTED="$(grep fnlfmt-unstable nix/versions.nix | cut -d'"' -f2)"
 # FENNELDOC_EXPECTED="$(grep fenneldoc nix/versions.nix | cut -d'"' -f2)"
 
 FENNEL_STABLE_ACTUAL="$(fennel --version 2>/dev/null | cut -d' ' -f2)"
 FENNEL_UNSTABLE_ACTUAL="$(fennel-unstable --version 2>/dev/null | cut -d' ' -f2)"
-FAITH_ACTUAL="$(fennel --eval "(print (. (require :faith) :version))" 2>/dev/null)"
+FAITH_STABLE_ACTUAL="$(fennel --eval "(print (. (require :faith) :version))" 2>/dev/null)"
+FAITH_UNSTABLE_ACTUAL="$(fennel --eval "(print (. (require :faith-unstable) :version))" 2>/dev/null)"
 FNLFMT_STABLE_ACTUAL="$(fnlfmt --version 2>/dev/null | cut -d' ' -f3)"
 FNLFMT_UNSTABLE_ACTUAL="$(fnlfmt-unstable --version 2>/dev/null | cut -d' ' -f3)"
 
@@ -33,11 +35,19 @@ else
     ANY_ERROR=true
 fi
 
-if [ "$FAITH_EXPECTED" = "$FAITH_ACTUAL" ]
+if [ "$FAITH_STABLE_EXPECTED" = "$FAITH_STABLE_ACTUAL" ]
 then
-    echo >&2 "[OK] faith: $FAITH_ACTUAL"
+    echo >&2 "[OK] faith stable: $FAITH_STABLE_ACTUAL"
 else
-    echo >&2 "[ERROR] faith: actual $FAITH_ACTUAL ≠ expected $FAITH_EXPECTED"
+    echo >&2 "[ERROR] faith stable: actual $FAITH_STABLE_ACTUAL ≠ expected $FAITH_STABLE_EXPECTED"
+    ANY_ERROR=true
+fi
+
+if [ "$FAITH_UNSTABLE_EXPECTED" = "$FAITH_UNSTABLE_ACTUAL" ]
+then
+    echo >&2 "[OK] faith unstable: $FAITH_UNSTABLE_ACTUAL"
+else
+    echo >&2 "[ERROR] faith unstable: actual $FAITH_UNSTABLE_ACTUAL ≠ expected $FAITH_UNSTABLE_EXPECTED"
     ANY_ERROR=true
 fi
 

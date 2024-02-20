@@ -20,7 +20,7 @@ jobs:
         run: |
           nix flake check
 
-      - name: Check formats
+      - name: Check format
         run: |
           nix develop .#ci-check-format --command bash -c "pre-commit run --all-files"
 

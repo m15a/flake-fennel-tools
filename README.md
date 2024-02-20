@@ -86,9 +86,9 @@ to `5.4`). In total, $2 \times 5 = 10$ packages it has.
 You can access them via attributes
 
 ```nix
-pkgs.${system}."fennel-${LUA}" # stable version (1.4.0 as of Feb 2024)
+pkgs."fennel-${LUA}" # stable version (1.4.0 as of Feb 2024)
 # or
-pkgs.${system}."fennel-unstable-${LUA}" # main branch head
+pkgs."fennel-unstable-${LUA}" # main branch head
 ```
 
 where `${LUA}` is either one of `luajit`, `lua5_1`, `lua5_2`, `lua5_3`, and `lua5_4`.
@@ -98,9 +98,9 @@ where `${LUA}` is either one of `luajit`, `lua5_1`, `lua5_2`, `lua5_3`, and `lua
 A testing library. Attributes:
 
 ```nix
-pkgs.${system}.faith # stable version (0.1.2 as of Feb 2024)
+pkgs.faith # stable version (0.1.2 as of Feb 2024)
 # or
-pkgs.${system}.faith-unstable # main branch head
+pkgs.faith-unstable # main branch head
 ```
 
 In this flake, the package contains a runnable script of Faith,
@@ -136,9 +136,9 @@ For more information, take a look at the [Faith's repository][4].
 A Fennel formatter. Attributes:
 
 ```nix
-pkgs.${system}.fnlfmt # stable version (0.3.1 as of Feb 2024)
+pkgs.fnlfmt # stable version (0.3.1 as of Feb 2024)
 # or
-pkgs.${system}.fnlfmt-unstable # main branch head
+pkgs.fnlfmt-unstable # main branch head
 ```
 
 Nothing special has been done for Nix usage. Install it and format codes as usual.
@@ -149,7 +149,7 @@ For more information, read the document in [Fennel Format's repository][5].
 A Fennel API documentation generator. Attribute:
 
 ```nix
-pkgs.${system}.fenneldoc
+pkgs.fenneldoc
 ```
 
 Again, once installed, you can just use it.

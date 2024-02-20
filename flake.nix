@@ -81,49 +81,10 @@
 
         checks = packages;
 
-        devShells = {
-          ci-lint = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              statix
-              deadnix
-              nixpkgs-fmt
-              pre-commit
-            ];
-          };
-          ci-versions =
-            let
-              faith-unstable = pkgs.faith-unstable.overrideAttrs (_: {
-                postInstall = ''
-                  mv $out/bin/faith $out/bin/faith-unstable
-                '';
-              });
-            in
-            pkgs.mkShell {
-              buildInputs = [
-                pkgs.fennel-luajit
-                (pkgs.fennel-unstable-luajit.overrideAttrs (_: {
-                  postInstall = ''
-                    mv $out/bin/fennel $out/bin/fennel-unstable
-                  '';
-                }))
-                pkgs.fnlfmt
-                (pkgs.fnlfmt-unstable.overrideAttrs (_: {
-                  postInstall = ''
-                    mv $out/bin/fnlfmt $out/bin/fnlfmt-unstable
-                  '';
-                }))
-              ];
-              FENNEL_PATH = "${pkgs.faith}/bin/?;${faith-unstable}/bin/?";
-              FENNELDOC_PATH = "${pkgs.fenneldoc}/bin/fenneldoc";
-            };
-          default = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              statix
-              deadnix
-              nixpkgs-fmt
-              pre-commit
-            ];
-          };
+        devShells = rec {
+          ci-check-format = pkgs.callPackage ./nix/pkgs/ci/check-format.nix { };
+          ci-check-versions = pkgs.callPackage ./nix/pkgs/ci/check-versions.nix { };
+          default = ci-check-format;
         };
       }));
 }

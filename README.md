@@ -83,14 +83,15 @@ Fennel stable version (`1.4.0` as of Feb 2024) or unstable version (`main`
 branch head) and Lua version/implementation (LuaJIT or PUC Lua from `5.1`
 to `5.4`). In total, $2 \times 5 = 10$ packages it has.
 
-You can access them via attribute
+You can access them via attributes
 
 ```nix
-pkgs.${system}.fennel-${FENNEL_VERSION}-${LUA_VERSION}
+pkgs.${system}."fennel-${LUA}" # stable version (1.4.0 as of Feb 2024)
+# or
+pkgs.${system}."fennel-unstable-${LUA}" # main branch head
 ```
 
-where `${FENNEL_VERSION}` is either `stable` or `unstable`
-and `${LUA_VERSION}` is either one of `luajit`, `lua5_1`, `lua5_2`, ..., `lua5_4`.
+where `${LUA}` is either one of `luajit`, `lua5_1`, `lua5_2`, `lua5_3`, and `lua5_4`.
 
 ### Faith
 

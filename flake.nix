@@ -47,11 +47,11 @@
       rec {
         packages = {
           inherit (pkgs)
-            fennel-stable-luajit
-            fennel-stable-lua5_1
-            fennel-stable-lua5_2
-            fennel-stable-lua5_3
-            fennel-stable-lua5_4
+            fennel-luajit
+            fennel-lua5_1
+            fennel-lua5_2
+            fennel-lua5_3
+            fennel-lua5_4
 
             fennel-unstable-luajit
             fennel-unstable-lua5_1
@@ -82,7 +82,7 @@
           };
           ci-versions = pkgs.mkShell {
             buildInputs = [
-              pkgs.fennel-stable-luajit
+              pkgs.fennel-luajit
               (pkgs.fennel-unstable-luajit.overrideAttrs (_: {
                 postInstall = ''
                   mv $out/bin/fennel $out/bin/fennel-unstable

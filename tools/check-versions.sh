@@ -1,71 +1,52 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -uo pipefail
 
 ANY_ERROR=false
 
-FENNEL_STABLE_EXPECTED="$(grep fennel-stable nix/versions.nix | cut -d'"' -f2)"
-FENNEL_UNSTABLE_EXPECTED="$(grep fennel-unstable nix/versions.nix | cut -d'"' -f2)"
-FAITH_STABLE_EXPECTED="$(grep faith-stable nix/versions.nix | cut -d'"' -f2)"
-FAITH_UNSTABLE_EXPECTED="$(grep faith-unstable nix/versions.nix | cut -d'"' -f2)"
-FNLFMT_STABLE_EXPECTED="$(grep fnlfmt-stable nix/versions.nix | cut -d'"' -f2)"
-FNLFMT_UNSTABLE_EXPECTED="$(grep fnlfmt-unstable nix/versions.nix | cut -d'"' -f2)"
-# FENNELDOC_EXPECTED="$(grep fenneldoc nix/versions.nix | cut -d'"' -f2)"
+check_version() {
+    local name expected actual
+    name="$1"
+    expected="$2"
+    actual="$3"
+    if [ "$expected" = "$actual" ]
+    then
+        echo >&2 "[OK] $name: $expected"
+    else
+        echo >&2 "[ERROR] $name: expected $expected ≠ actual $actual"
+        false
+    fi
+}
 
-FENNEL_STABLE_ACTUAL="$(fennel --version 2>/dev/null | cut -d' ' -f2)"
-FENNEL_UNSTABLE_ACTUAL="$(fennel-unstable --version 2>/dev/null | cut -d' ' -f2)"
-FAITH_STABLE_ACTUAL="$(fennel --eval "(print (. (require :faith) :version))" 2>/dev/null)"
-FAITH_UNSTABLE_ACTUAL="$(fennel --eval "(print (. (require :faith-unstable) :version))" 2>/dev/null)"
-FNLFMT_STABLE_ACTUAL="$(fnlfmt --version 2>/dev/null | cut -d' ' -f3)"
-FNLFMT_UNSTABLE_ACTUAL="$(fnlfmt-unstable --version 2>/dev/null | cut -d' ' -f3)"
+check_version "Fennel stable" \
+    "$(grep fennel-stable nix/versions.nix | cut -d'"' -f2)" \
+    "$(fennel --version 2>/dev/null | cut -d' ' -f2)"
+test $? -eq 0 || ANY_ERROR=true
 
-if [ "$FENNEL_STABLE_EXPECTED" = "$FENNEL_STABLE_ACTUAL" ]
-then
-    echo >&2 "[OK] Fennel stable: $FENNEL_STABLE_ACTUAL"
-else
-    echo >&2 "[ERROR] Fennel stable: actual $FENNEL_STABLE_ACTUAL ≠ expected $FENNEL_STABLE_EXPECTED"
-    ANY_ERROR=true
-fi
+check_version "Fennel unstable" \
+    "$(grep fennel-unstable nix/versions.nix | cut -d'"' -f2)" \
+    "$(fennel-unstable --version 2>/dev/null | cut -d' ' -f2)"
+test $? -eq 0 || ANY_ERROR=true
 
-if [ "$FENNEL_UNSTABLE_EXPECTED" = "$FENNEL_UNSTABLE_ACTUAL" ]
-then
-    echo >&2 "[OK] Fennel unstable: $FENNEL_UNSTABLE_ACTUAL"
-else
-    echo >&2 "[ERROR] Fennel unstable: actual $FENNEL_UNSTABLE_ACTUAL ≠ expected $FENNEL_UNSTABLE_EXPECTED"
-    ANY_ERROR=true
-fi
+check_version "Faith stable" \
+    "$(grep faith-stable nix/versions.nix | cut -d'"' -f2)" \
+    "$(fennel --eval "(print (. (require :faith) :version))" 2>/dev/null)"
+test $? -eq 0 || ANY_ERROR=true
 
-if [ "$FAITH_STABLE_EXPECTED" = "$FAITH_STABLE_ACTUAL" ]
-then
-    echo >&2 "[OK] faith stable: $FAITH_STABLE_ACTUAL"
-else
-    echo >&2 "[ERROR] faith stable: actual $FAITH_STABLE_ACTUAL ≠ expected $FAITH_STABLE_EXPECTED"
-    ANY_ERROR=true
-fi
+check_version "Faith unstable" \
+    "$(grep faith-unstable nix/versions.nix | cut -d'"' -f2)" \
+    "$(fennel --eval "(print (. (require :faith-unstable) :version))" 2>/dev/null)"
+test $? -eq 0 || ANY_ERROR=true
 
-if [ "$FAITH_UNSTABLE_EXPECTED" = "$FAITH_UNSTABLE_ACTUAL" ]
-then
-    echo >&2 "[OK] faith unstable: $FAITH_UNSTABLE_ACTUAL"
-else
-    echo >&2 "[ERROR] faith unstable: actual $FAITH_UNSTABLE_ACTUAL ≠ expected $FAITH_UNSTABLE_EXPECTED"
-    ANY_ERROR=true
-fi
+check_version "Fnlfmt stable" \
+    "$(grep fnlfmt-stable nix/versions.nix | cut -d'"' -f2)" \
+    "$(fnlfmt --version 2>/dev/null | cut -d' ' -f3)"
+test $? -eq 0 || ANY_ERROR=true
 
-if [ "$FNLFMT_STABLE_EXPECTED" = "$FNLFMT_STABLE_ACTUAL" ]
-then
-    echo >&2 "[OK] fnlfmt stable: $FNLFMT_STABLE_ACTUAL"
-else
-    echo >&2 "[ERROR] fnlfmt stable: actual $FNLFMT_STABLE_ACTUAL ≠ expected $FNLFMT_STABLE_EXPECTED"
-    ANY_ERROR=true
-fi
-
-if [ "$FNLFMT_UNSTABLE_EXPECTED" = "$FNLFMT_UNSTABLE_ACTUAL" ]
-then
-    echo >&2 "[OK] fnlfmt unstable: $FNLFMT_UNSTABLE_ACTUAL"
-else
-    echo >&2 "[ERROR] fnlfmt unstable: actual $FNLFMT_UNSTABLE_ACTUAL ≠ expected $FNLFMT_UNSTABLE_EXPECTED"
-    ANY_ERROR=true
-fi
+check_version "Fnlfmt unstable" \
+    "$(grep fnlfmt-unstable nix/versions.nix | cut -d'"' -f2)" \
+    "$(fnlfmt-unstable --version 2>/dev/null | cut -d' ' -f3)"
+test $? -eq 0 || ANY_ERROR=true
 
 echo >&2 "[TODO] fenneldoc: check version consistency"
 

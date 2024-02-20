@@ -86,7 +86,24 @@
         "type": "github"
       }
     },
-    "fnlfmt": {
+    "fnlfmt-stable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1691109119,
+        "narHash": "sha256-rhbYG0TpqAZnbLaZOG739/pDA61Dwb4Y1HhBxWLtOus=",
+        "owner": "~technomancy",
+        "repo": "fnlfmt",
+        "rev": "4e72b713751d7edcf387880376e8883c1be0761f",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~technomancy",
+        "ref": "0.3.1",
+        "repo": "fnlfmt",
+        "type": "sourcehut"
+      }
+    },
+    "fnlfmt-unstable": {
       "flake": false,
       "locked": {
         "lastModified": 1706065499,
@@ -126,7 +143,8 @@
         "fennel-unstable": "fennel-unstable",
         "fenneldoc": "fenneldoc",
         "flake-utils": "flake-utils",
-        "fnlfmt": "fnlfmt",
+        "fnlfmt-stable": "fnlfmt-stable",
+        "fnlfmt-unstable": "fnlfmt-unstable",
         "nixpkgs": "nixpkgs"
       }
     },

@@ -14,7 +14,11 @@
       url = "gitlab:andreyorst/fenneldoc/master";
       flake = false;
     };
-    fnlfmt = {
+    fnlfmt-stable = {
+      url = "sourcehut:~technomancy/fnlfmt/0.3.1";
+      flake = false;
+    };
+    fnlfmt-unstable = {
       url = "sourcehut:~technomancy/fnlfmt/main";
       flake = false;
     };
@@ -61,6 +65,7 @@
 
             faith
             fnlfmt
+            fnlfmt-unstable
             fenneldoc;
         };
 
@@ -89,6 +94,11 @@
                 '';
               }))
               pkgs.fnlfmt
+              (pkgs.fnlfmt-unstable.overrideAttrs (_: {
+                postInstall = ''
+                  mv $out/bin/fnlfmt $out/bin/fnlfmt-unstable
+                '';
+              }))
             ];
             FENNEL_PATH = "${pkgs.faith}/bin/?";
           };

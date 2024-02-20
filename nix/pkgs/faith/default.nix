@@ -1,6 +1,6 @@
-{ version, src, stdenv }:
+{ version, src, stdenv, lib }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "faith";
   inherit version src;
 
@@ -27,4 +27,11 @@ stdenv.mkDerivation {
     install -m755 bin/faith -t $out/bin/
     runHook postInstall
   '';
+
+  meta = with lib; {
+    description = "The Fennel Advanced Interactive Test Helper.";
+    homepage = "https://git.sr.ht/~technomancy/faith";
+    license = licenses.mit;
+    mainProgram = pname;
+  };
 }

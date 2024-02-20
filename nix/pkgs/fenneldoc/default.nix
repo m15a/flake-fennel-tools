@@ -1,4 +1,4 @@
-{ version, src, lua, stdenv }:
+{ version, src, lua, stdenv, lib }:
 
 stdenv.mkDerivation rec {
   pname = "fenneldoc";
@@ -21,4 +21,11 @@ stdenv.mkDerivation rec {
   postBuild = ''
     patchShebangs .
   '';
+
+  meta = with lib; {
+    description = "Tool for automatic documentation generation and validation for the Fennel language.";
+    homepage = "https://gitlab.com/andreyorst/fenneldoc";
+    license = licenses.mit;
+    mainProgram = pname;
+  };
 }

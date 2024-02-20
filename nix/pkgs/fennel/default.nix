@@ -1,4 +1,4 @@
-{ version, src, lua, stdenv, pandoc }:
+{ version, src, lua, stdenv, lib, pandoc }:
 
 stdenv.mkDerivation rec {
   pname = "fennel";
@@ -29,4 +29,11 @@ stdenv.mkDerivation rec {
   '';
 
   passthru = { inherit lua; };
+
+  meta = with lib; {
+    description = "Lua Lisp Language";
+    homepage = "https://fennel-lang.org/";
+    license = licenses.mit;
+    mainProgram = pname;
+  };
 }

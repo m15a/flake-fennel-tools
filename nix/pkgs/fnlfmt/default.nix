@@ -1,6 +1,6 @@
-{ version, src, lua, stdenv }:
+{ version, src, lua, stdenv, lib }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "fnlfmt";
   inherit version src;
 
@@ -24,4 +24,11 @@ stdenv.mkDerivation {
   postBuild = ''
     patchShebangs .
   '';
+
+  meta = with lib; {
+    description = "Format your Fennel!";
+    homepage = "https://git.sr.ht/~technomancy/fnlfmt";
+    license = licenses.mit;
+    mainProgram = pname;
+  };
 }

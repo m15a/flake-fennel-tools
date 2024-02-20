@@ -14,11 +14,19 @@
       url = "gitlab:andreyorst/fenneldoc/master";
       flake = false;
     };
-    fnlfmt = {
+    fnlfmt-stable = {
+      url = "sourcehut:~technomancy/fnlfmt/0.3.1";
+      flake = false;
+    };
+    fnlfmt-unstable = {
       url = "sourcehut:~technomancy/fnlfmt/main";
       flake = false;
     };
-    faith = {
+    faith-stable = {
+      url = "sourcehut:~technomancy/faith/0.1.2";
+      flake = false;
+    };
+    faith-unstable = {
       url = "sourcehut:~technomancy/faith/main";
       flake = false;
     };
@@ -60,7 +68,9 @@
             fennel-unstable-lua5_4
 
             faith
+            faith-unstable
             fnlfmt
+            fnlfmt-unstable
             fenneldoc;
         };
 
@@ -80,18 +90,31 @@
               pre-commit
             ];
           };
-          ci-versions = pkgs.mkShell {
-            buildInputs = [
-              pkgs.fennel-luajit
-              (pkgs.fennel-unstable-luajit.overrideAttrs (_: {
+          ci-versions =
+            let
+              faith-unstable = pkgs.faith-unstable.overrideAttrs (_: {
                 postInstall = ''
-                  mv $out/bin/fennel $out/bin/fennel-unstable
+                  mv $out/bin/faith $out/bin/faith-unstable
                 '';
-              }))
-              pkgs.fnlfmt
-            ];
-            FENNEL_PATH = "${pkgs.faith}/bin/?";
-          };
+              });
+            in
+            pkgs.mkShell {
+              buildInputs = [
+                pkgs.fennel-luajit
+                (pkgs.fennel-unstable-luajit.overrideAttrs (_: {
+                  postInstall = ''
+                    mv $out/bin/fennel $out/bin/fennel-unstable
+                  '';
+                }))
+                pkgs.fnlfmt
+                (pkgs.fnlfmt-unstable.overrideAttrs (_: {
+                  postInstall = ''
+                    mv $out/bin/fnlfmt $out/bin/fnlfmt-unstable
+                  '';
+                }))
+              ];
+              FENNEL_PATH = "${pkgs.faith}/bin/?;${faith-unstable}/bin/?";
+            };
           default = pkgs.mkShell {
             buildInputs = with pkgs; [
               statix

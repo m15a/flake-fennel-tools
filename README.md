@@ -79,14 +79,14 @@ Try installing readline via luarocks for a better repl experience.
 ### Fennel
 
 This flake provides a number of Fennel variants, each being different in
-Fennel stable version (`1.4.0` as of Feb 2024) or unstable version (`main`
+Fennel stable version (`1.4.1` as of Feb 2024) or unstable version (`main`
 branch head) and Lua version/implementation (LuaJIT or PUC Lua from `5.1`
 to `5.4`). In total, $2 \times 5 = 10$ packages it has.
 
 You can access them via attributes
 
 ```nix
-pkgs."fennel-${LUA}" # stable version (1.4.0 as of Feb 2024)
+pkgs."fennel-${LUA}" # stable version (1.4.1 as of Feb 2024)
 # or
 pkgs."fennel-unstable-${LUA}" # main branch head
 ```

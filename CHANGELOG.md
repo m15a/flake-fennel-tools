@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning][2].
 
 ## Unreleased
 
+### Bumped package versions
+
+- fennel: `1.4.1`
+- fennel-unstable: `1.5.0-dev`
+
 ## [0.1.0][v0.1.0] (2024-02-20)
 
 - Initial release of development version.

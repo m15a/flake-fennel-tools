@@ -33,7 +33,11 @@ let
       (map
         ({ fennelVersion, luaVersion } @ args:
           {
-            name = "${pname}-${fennelVersion}-${luaVersion}";
+            # Omit `-stable` part.
+            name =
+              if fennelVersion == "stable"
+              then "${pname}-${luaVersion}"
+              else "${pname}-${fennelVersion}-${luaVersion}";
             value = builder args;
           })
         fennelLuaVersionMatrix);

@@ -16,36 +16,28 @@ let
     "lua5_4"
   ];
 
-  fennelLuaVersionMatrix = prev.lib.cartesianProductOfSets {
-    fennelVersion = fennelVersions;
-    luaVersion = luaVersions;
-  };
-
-  buildFennel = { fennelVersion, luaVersion }:
-    final.callPackage ./pkgs/fennel {
+  buildFennel = { fennelVersion, luaVersion }: {
+    name =
+      if fennelVersion == "stable"
+      then "fennel-${luaVersion}"
+      else "fennel-${fennelVersion}-${luaVersion}";
+    value = final.callPackage ./pkgs/fennel {
       version = versions."fennel-${fennelVersion}";
       src = inputs."fennel-${fennelVersion}";
       lua = final.${luaVersion};
     };
+  };
 
-  buildPackageSet = { pname, builder }:
-    builtins.listToAttrs
-      (map
-        ({ fennelVersion, luaVersion } @ args:
-          {
-            # Omit `-stable` part.
-            name =
-              if fennelVersion == "stable"
-              then "${pname}-${luaVersion}"
-              else "${pname}-${fennelVersion}-${luaVersion}";
-            value = builder args;
-          })
-        fennelLuaVersionMatrix);
+  buildPackageSet = { builder, args }:
+    builtins.listToAttrs (map builder args);
 in
 
 (buildPackageSet {
-  pname = "fennel";
   builder = buildFennel;
+  args = prev.lib.cartesianProductOfSets {
+    fennelVersion = fennelVersions;
+    luaVersion = luaVersions;
+  };
 }) // {
   faith = final.callPackage ./pkgs/faith {
     version = versions.faith-stable;

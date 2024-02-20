@@ -1,4 +1,4 @@
-{ version, src, lua, stdenv, lib }:
+{ version, shortRev ? null, src, lua, stdenv, lib }:
 
 stdenv.mkDerivation rec {
   pname = "fenneldoc";
@@ -14,7 +14,7 @@ stdenv.mkDerivation rec {
   '';
 
   makeFlags = [
-    "VERSION=${version}"
+    "VERSION=${version + lib.optionalString (shortRev != null) "-${shortRev}"}"
     "PREFIX=$(out)"
   ];
 

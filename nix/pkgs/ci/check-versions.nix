@@ -34,5 +34,5 @@ mkShell {
     fnlfmt-unstable'
   ];
   FENNEL_PATH = "${faith}/bin/?;${faith-unstable'}/bin/?";
-  FENNELDOC_PATH = "${pkgs.fenneldoc}/bin/fenneldoc";
+  FENNELDOC_PATH = "${fenneldoc}/bin/fenneldoc";
 }

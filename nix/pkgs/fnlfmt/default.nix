@@ -1,4 +1,4 @@
-{ version, src, lua, stdenv, lib }:
+{ version, shortRev ? null, src, lua, stdenv, lib }:
 
 stdenv.mkDerivation rec {
   pname = "fnlfmt";
@@ -9,13 +9,17 @@ stdenv.mkDerivation rec {
     lua.pkgs.fennel
   ];
 
-  postPatch = ''
-    # Append short commit hash to version string.
-    sed -E -i fnlfmt.fnl \
-        -e "s|(\{\s*:\s+fnlfmt\s+:\s+format-file\s+:version\s+:)([^\}]*)(\s*\})|\1${version}\3|"
-
-    sed -i Makefile -e 's|./fennel|lua fennel|'
-  '';
+  postPatch = with lib;
+    let
+      version' = strings.escapeRegex version;
+    in
+    optionalString (shortRev != null) ''
+      # Append short commit hash to version string.
+      sed -E -i fnlfmt.fnl \
+          -e "s|(\{: fnlfmt : format-file :version :)(${version'})(\})|\1${version}-${shortRev}\3|"
+    '' + ''
+      sed -i Makefile -e 's|./fennel|lua fennel|'
+    '';
 
   makeFlags = [
     "PREFIX=$(out)"

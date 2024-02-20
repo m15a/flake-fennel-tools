@@ -4,6 +4,12 @@ stdenv.mkDerivation {
   pname = "faith";
   inherit version src;
 
+  postPatch = ''
+    # Append short commit hash to version string.
+    sed -E -i faith.fnl \
+        -e "s|(\{\s*:\s+run\s+:\s+skip\s+:version\s+\")([^\"]*)(\"\s*$)|\1${version}\3|"
+  '';
+
   buildPhase = ''
     runHook preBuild
     mkdir bin

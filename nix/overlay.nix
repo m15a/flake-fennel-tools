@@ -16,13 +16,18 @@ let
     "lua5_4"
   ];
 
+  inherit (prev.lib) optionalString cartesianProductOfSets;
+
   buildFennel = { fennelVersion, luaVersion }: {
     name =
       if fennelVersion == "stable"
       then "fennel-${luaVersion}"
       else "fennel-${fennelVersion}-${luaVersion}";
     value = final.callPackage ./pkgs/fennel {
-      version = versions."fennel-${fennelVersion}";
+      version =
+        versions."fennel-${fennelVersion}" +
+        optionalString (fennelVersion != "stable")
+          "-${inputs."fennel-${fennelVersion}".shortRev}";
       src = inputs."fennel-${fennelVersion}";
       lua = final.${luaVersion};
     };
@@ -34,7 +39,7 @@ in
 
 (buildPackageSet {
   builder = buildFennel;
-  args = prev.lib.cartesianProductOfSets {
+  args = cartesianProductOfSets {
     fennelVersion = fennelVersions;
     luaVersion = luaVersions;
   };
@@ -44,7 +49,9 @@ in
     src = inputs.faith-stable;
   };
   faith-unstable = final.callPackage ./pkgs/faith {
-    version = versions.faith-unstable;
+    version =
+      versions.faith-unstable +
+      "-${inputs.faith-unstable.shortRev}";
     src = inputs.faith-unstable;
   };
   fnlfmt = final.callPackage ./pkgs/fnlfmt {
@@ -53,12 +60,14 @@ in
     lua = final.luajit;
   };
   fnlfmt-unstable = final.callPackage ./pkgs/fnlfmt {
-    version = versions.fnlfmt-unstable;
+    version = versions.fnlfmt-unstable +
+    "-${inputs.fnlfmt-unstable.shortRev}";
     src = inputs.fnlfmt-unstable;
     lua = final.luajit;
   };
   fenneldoc = final.callPackage ./pkgs/fenneldoc {
-    version = versions.fenneldoc;
+    version = versions.fenneldoc +
+    "-${inputs.fenneldoc.shortRev}";
     src = inputs.fenneldoc;
     lua = final.lua5_4;
   };

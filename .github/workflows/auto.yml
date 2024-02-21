@@ -1,11 +1,11 @@
-name: Update
+name: Auto
 
 on:
   schedule:
     - cron: "15 14 * * *"
 
 jobs:
-  update:
+  update-flake:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -18,11 +18,11 @@ jobs:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: DeterminateSystems/magic-nix-cache-action@v3
 
-      - name: Update flake
+      - name: Update flake lock file
         run: |
           nix flake update
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "ci: auto flake update"
+          commit_message: "auto(nix): update flake lock file"
           branch: ${{ github.head_ref }}

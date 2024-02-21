@@ -1,4 +1,9 @@
-{ version, shortRev ? null, src, stdenv, lib }:
+{ version
+, shortRev ? null
+, src
+, stdenv
+, lib
+}:
 
 stdenv.mkDerivation rec {
   pname = "faith";

@@ -1,4 +1,10 @@
-{ version, shortRev ? null, src, lua, stdenv, lib }:
+{ version
+, shortRev ? null
+, src
+, lua
+, stdenv
+, lib
+}:
 
 stdenv.mkDerivation rec {
   pname = "fnlfmt";

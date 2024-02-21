@@ -1,4 +1,10 @@
-{ version, shortRev ? null, src, lua, stdenv, lib }:
+{ version
+, shortRev ? null
+, src
+, lua
+, stdenv
+, lib
+}:
 
 stdenv.mkDerivation rec {
   pname = "fenneldoc";
@@ -13,8 +19,8 @@ stdenv.mkDerivation rec {
     sed -i Makefile -e 's|\./fenneldoc|lua fenneldoc|'
   '';
 
-  makeFlags = [
-    "VERSION=${version + lib.optionalString (shortRev != null) "-${shortRev}"}"
+  makeFlags = with lib; [
+    "VERSION=${version + optionalString (shortRev != null) "-${shortRev}"}"
     "PREFIX=$(out)"
   ];
 

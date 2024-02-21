@@ -2,28 +2,31 @@
 
 Nix flake of Fennel development tools.
 
-[![CI][1]][2]
+[![CI][b1]][b2]
+
+[b1]: https://img.shields.io/github/actions/workflow/status/m15a/flake-fennel-tools/ci.yml?style=flat-square&logo=github&label=CI
+[b2]: https://github.com/m15a/flake-fennel-tools/actions/workflows/ci.yml
 
 ## Description
 
-There are a number of good development tools for [Fennel][3] programming:
-[Faith][4] for testing,
-[Fennel Format][5] for formatting codes,
-[Fenneldoc][6] for generating documentation,
-etc. (find more in [Fennel wiki][7]).
+There are a number of good development tools for [Fennel][1] programming:
+[Faith][2] for testing,
+[Fennel Format][3] for formatting code,
+[Fenneldoc][4] for generating documentation,
+etc. (find more in [Fennel wiki][5]).
 
-Some of these tools are missing in [nixpkgs][8][^1].
-This repository aims to help Fennel developers using Nix by providing a [Nix flake][9],
-which ships Fennel development tools including those missing ones.
+Some of these tools are missing in [nixpkgs][6][^1].
+This flake aims to help Fennel developers using Nix by providing Fennel development
+tools *en masse*, including those missing ones.
 
-Moreover, this flake provides Fennel development version (i.e., `main` branch head).
-So it would help you test your Fennel application/library against the cutting edge.
+Moreover, it provides Fennel development version (i.e., `main` branch head).
+So, it would help you test your Fennel application/library against the cutting edge.
 
 ## Usage
 
 ### Overlay
 
-Add the overlay provided by this flake to your `flake.nix`.
+Add the default overlay of this flake to your `flake.nix`.
 It could look like:
 
 ```nix
@@ -68,30 +71,30 @@ All packages that contain runnable applications are accessible via
 
 ```console
 $ nix run github:m15a/flake-fennel-tools#fennel-unstable-luajit
-Welcome to Fennel 1.4.1-dev-2a1415f on LuaJIT 2.1.1693350652 Linux/x64!
+Welcome to Fennel 1.5.0-dev-f0e3412 on LuaJIT 2.1.1693350652 Linux/x64!
 Use ,help to see available commands.
 Try installing readline via luarocks for a better repl experience.
 >>
 ```
 
-## Available packages
+## Notes on each package
 
 ### Fennel
 
-This flake provides a number of Fennel variants, each being different in
-Fennel stable version (`1.4.1` as of Feb 2024) or unstable version (`main`
-branch head) and Lua version/implementation (LuaJIT or PUC Lua from `5.1`
-to `5.4`). In total, $2 \times 5 = 10$ packages it has.
+This flake exposes a number of Fennel variants, each being different in
+Fennel version, stable (`1.4.1` as of Feb 2024) or unstable (`main` branch
+head), and Lua version/implementation, PUC Lua from `5.1` to `5.4`
+or LuaJIT.
 
 You can access them via attributes
 
 ```nix
-pkgs."fennel-${LUA}" # stable version (1.4.1 as of Feb 2024)
+pkgs."fennel-${LUA}" # stable version
 # or
 pkgs."fennel-unstable-${LUA}" # main branch head
 ```
 
-where `${LUA}` is either one of `luajit`, `lua5_1`, `lua5_2`, `lua5_3`, and `lua5_4`.
+where `${LUA}` is either one of `lua5_1`, `lua5_2`, `lua5_3`, `lua5_4`, and `luajit`. 
 
 ### Faith
 
@@ -105,10 +108,10 @@ pkgs.faith-unstable # main branch head
 
 In this flake, the package contains a runnable script of Faith,
 `bin/faith`. The script begins with shebang line `#!/usr/bin/env fennel`,
-thus enabling you to test your codes against different Fennel variants.
+thus enabling you to test your code against different Fennel variants.
 
 Don't forget to add the Faith script path to environment variable `$FENNEL_PATH`,
-so that you can require Faith module in your test codes.
+so that you can require Faith module in your test code.
 It could be set in `devShell`:
 
 ```nix
@@ -123,13 +126,13 @@ It could be set in `devShell`:
   ...
 ```
 
-or in shell (below is a Bash example):
+or in console shell (below is a Bash example):
 
 ```bash
 export FENNEL_PATH="$(dirname $(which faith))/?"
 ```
 
-For more information, take a look at the [Faith's repository][4].
+For more information, take a look at [Faith's repository][2].
 
 ### Fennel Format
 
@@ -141,32 +144,29 @@ pkgs.fnlfmt # stable version (0.3.1 as of Feb 2024)
 pkgs.fnlfmt-unstable # main branch head
 ```
 
-Nothing special has been done for Nix usage. Install it and format codes as usual.
-For more information, read the document in [Fennel Format's repository][5].
+Nothing special has been done for Nix usage. Install it and format code as usual.
+For more information, read the document in [Fennel Format's repository][3].
 
 ### Fenneldoc
 
 A Fennel API documentation generator. Attribute:
 
 ```nix
-pkgs.fenneldoc
+pkgs.fenneldoc # development version (1.0.1-dev as of Feb 2024)
 ```
 
 Again, once installed, you can just use it.
-For more information, read the document in [Fenneldoc's repository][6].
+For more information, read the document in [Fenneldoc's repository][4].
 
 ## License
 
 [BSD 3-clause](LICENSE)
 
-[1]: https://img.shields.io/github/actions/workflow/status/m15a/flake-fennel-tools/ci.yml?style=flat-square&logo=github&label=CI
-[2]: https://github.com/m15a/flake-fennel-tools/actions/workflows/ci.yml
-[3]: https://fennel-lang.org/
-[4]: https://git.sr.ht/~technomancy/faith
-[5]: https://git.sr.ht/~technomancy/fnlfmt
-[6]: https://gitlab.com/andreyorst/fenneldoc
-[7]: https://wiki.fennel-lang.org/#tools
-[8]: https://github.com/NixOS/nixpkgs
-[9]: https://nix.dev/concepts/flakes
+[1]: https://fennel-lang.org/
+[2]: https://git.sr.ht/~technomancy/faith
+[3]: https://git.sr.ht/~technomancy/fnlfmt
+[4]: https://gitlab.com/andreyorst/fenneldoc
+[5]: https://wiki.fennel-lang.org/#tools
+[6]: https://github.com/NixOS/nixpkgs
 
 [^1]: `fnlfmt` and `fennel-ls` are available in nixpkgs as of Feb 2024.

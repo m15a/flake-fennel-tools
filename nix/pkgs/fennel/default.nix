@@ -1,4 +1,12 @@
-{ version, shortRev ? null, src, lua, stdenv, lib, pandoc }:
+{ version
+, shortRev ? null
+, src
+, lua
+, stdenv
+, lib
+, fetchpatch
+, pandoc
+}:
 
 stdenv.mkDerivation rec {
   pname = "fennel";
@@ -9,6 +17,15 @@ stdenv.mkDerivation rec {
     pandoc
   ];
 
+  patches = with lib;
+    optionals (versionOlder version "1.5.0") [
+      (fetchpatch {
+        name = "fix Makefile manpage installation";
+        url = "https://git.sr.ht/~technomancy/fennel/commit/f0e341239b0bdbbc1aa5f2b715a3389e2ab07646.patch";
+        hash = "sha256-/zWcpyb5qd8ffW0FSJsXXm0nq4xWWfdrDpI41+JZZ0E=";
+      })
+    ];
+
   postPatch = with lib;
     let
       version' = strings.escapeRegex version;
@@ -17,11 +34,6 @@ stdenv.mkDerivation rec {
       # Append short commit hash to version string.
       sed -E -i src/fennel/utils.fnl \
           -e "s|(local version :)(${version'})(\))|\1${version}-${shortRev}\3|"
-    '' + ''
-      # FIXME: maninst function and run ./fennel do not work.
-      sed -i Makefile \
-          -e 's|$(call maninst,$(doc),$(DESTDIR)$(MAN_DIR)/$(doc))|$(shell mkdir -p $(dir $(DESTDIR)$(MAN_DIR)/$(doc)) && cp $(doc) $(DESTDIR)$(MAN_DIR)/$(doc))|' \
-          -e 's|\./fennel|lua fennel|'
     '';
 
   makeFlags = [

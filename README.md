@@ -66,7 +66,7 @@ It could look like:
 
 ### Run applications on the fly
 
-All packages that contain runnable applications are accessible via
+Executable programs contained in the packages are accessible via
 `nix run` command. For example,
 
 ```console

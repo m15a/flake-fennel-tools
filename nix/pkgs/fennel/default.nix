@@ -18,7 +18,7 @@ stdenv.mkDerivation rec {
   ];
 
   patches = with lib;
-    optionals (versionOlder version "1.5.0") [
+    optionals (versionOlder version "1.4.2") [
       (fetchpatch {
         name = "fix Makefile manpage installation";
         url = "https://git.sr.ht/~technomancy/fennel/commit/f0e341239b0bdbbc1aa5f2b715a3389e2ab07646.patch";

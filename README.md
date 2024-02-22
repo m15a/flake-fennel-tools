@@ -75,7 +75,7 @@ Executable programs contained in the packages are accessible via
 
 ```console
 $ nix run github:m15a/flake-fennel-tools#fennel-unstable-luajit
-Welcome to Fennel 1.5.0-dev-f0e3412 on LuaJIT 2.1.1693350652 Linux/x64!
+Welcome to Fennel 1.4.2-dev-f0e3412 on LuaJIT 2.1.1693350652 Linux/x64!
 Use ,help to see available commands.
 Try installing readline via luarocks for a better repl experience.
 >>

@@ -19,8 +19,9 @@ Some of these tools are missing in [nixpkgs][6][^1].
 This flake aims to help Fennel developers using Nix by providing Fennel development
 tools *en masse*, including those missing ones.
 
-Moreover, it provides Fennel development version (i.e., `main` branch head).
-So, it would help you test your Fennel application/library against the cutting edge.
+Moreover, it provides Fennel development version (i.e., `main` branch head),
+which is updated once every day.
+It would help you test your Fennel application/library against the cutting edge.
 
 ## Usage
 

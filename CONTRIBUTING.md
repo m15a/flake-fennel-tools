@@ -23,7 +23,7 @@ breaking changes.
 - **fix**: Fix a bug.
 - **feat**: Introduce a new feature.
 - **refactor**: Change codes but do neither fix any bug nor introduce new features.
-- **bump**: Bump package version.
+- **bump**: Bump or downgrade package version.
 - **style**: Just format codes. Small refactoring (e.g., changing a variable name)
   could be included, though.
 - **test**: Add, fix, change, or refactor test codes.

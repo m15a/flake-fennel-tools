@@ -54,11 +54,11 @@
     "fennel-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1708561208,
-        "narHash": "sha256-rmuoK2v7mb7kn4soQGb3PzsZN3iD45AFEEGb1nv2TXY=",
+        "lastModified": 1708641629,
+        "narHash": "sha256-2uhLPmtuptISItc2t2ypJk1R9p1CZw/ULmaF9ZqGqmU=",
         "owner": "~technomancy",
         "repo": "fennel",
-        "rev": "e232e9a3f141baddd9cbccf3f18688c6a3deea28",
+        "rev": "290cd0154e4bbd8131732cac3b787c38f584786b",
         "type": "sourcehut"
       },
       "original": {

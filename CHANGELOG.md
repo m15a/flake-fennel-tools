@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning][2].
 
 ## Unreleased
 
+## [0.1.2][v0.1.2] (2024-02-24)
+
 ### Downgraded package versions
 
 - fennel-unstable: `1.5.0-dev` -> `1.4.2-dev`
@@ -30,5 +32,6 @@ and this project adheres to [Semantic Versioning][2].
   - Fnlfmt: versions `0.3.1` und `0.3.2-dev`
   - Fenneldoc: version `1.0.1-dev`
 
+[v0.1.2]: https://github.com/m15a/flake-fennel-tools/tree/v0.1.2
 [v0.1.1]: https://github.com/m15a/flake-fennel-tools/tree/v0.1.1
 [v0.1.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.1.0

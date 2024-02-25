@@ -37,16 +37,16 @@
     "fennel-stable": {
       "flake": false,
       "locked": {
-        "lastModified": 1708389687,
-        "narHash": "sha256-M6aOeyE//+/KPpg54+VXHC9+Z+WK0QQbTSvy/ZvXcXw=",
+        "lastModified": 1708751223,
+        "narHash": "sha256-MzKXGjBDHrFT81fLOxDOtErQZ8VbFv4ZDzYh1OVBMcA=",
         "owner": "~technomancy",
         "repo": "fennel",
-        "rev": "1cc7f44043d45537fb86872feeafcf556e3c7b00",
+        "rev": "4e07001d7108eea2670125073e94d96eb9b0a4c6",
         "type": "sourcehut"
       },
       "original": {
         "owner": "~technomancy",
-        "ref": "1.4.1",
+        "ref": "1.4.2",
         "repo": "fennel",
         "type": "sourcehut"
       }

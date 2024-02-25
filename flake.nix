@@ -3,7 +3,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     fennel-stable = {
-      url = "sourcehut:~technomancy/fennel/1.4.1";
+      url = "sourcehut:~technomancy/fennel/1.4.2";
       flake = false;
     };
     fennel-unstable = {

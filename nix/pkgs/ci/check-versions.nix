@@ -6,6 +6,7 @@
 , fnlfmt
 , fnlfmt-unstable
 , fenneldoc
+, jq
 }:
 
 let
@@ -32,6 +33,7 @@ mkShell {
     fennel-unstable-luajit'
     fnlfmt
     fnlfmt-unstable'
+    jq
   ];
   FENNEL_PATH = "${faith}/bin/?;${faith-unstable'}/bin/?";
   FENNELDOC_PATH = "${fenneldoc}/bin/fenneldoc";

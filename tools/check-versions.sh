@@ -23,38 +23,38 @@ check_version() {
 }
 
 check_version "Fennel stable" \
-    "$(grep fennel-stable nix/versions.nix 2>/dev/null | cut -d'"' -f2)" \
+    "$(jq -r '.["fennel-stable"]' nix/pkgs/versions.json 2>/dev/null)" \
     "$(fennel --version 2>/dev/null | cut -d' ' -f2)"
 test $? -eq 0 || ANY_ERROR=true
 
 check_version "Fennel unstable" \
-    "$(grep fennel-unstable nix/versions.nix 2>/dev/null | cut -d'"' -f2)" \
+    "$(jq -r '.["fennel-unstable"]' nix/pkgs/versions.json 2>/dev/null)" \
     "$(fennel-unstable --version 2>/dev/null | cut -d' ' -f2)"
 test $? -eq 0 || ANY_ERROR=true
 
 check_version "Faith stable" \
-    "$(grep faith-stable nix/versions.nix 2>/dev/null | cut -d'"' -f2)" \
+    "$(jq -r '.["faith-stable"]' nix/pkgs/versions.json 2>/dev/null)" \
     "$(fennel --eval "(print (. (require :faith) :version))" 2>/dev/null)"
 test $? -eq 0 || ANY_ERROR=true
 
 check_version "Faith unstable" \
-    "$(grep faith-unstable nix/versions.nix 2>/dev/null | cut -d'"' -f2)" \
+    "$(jq -r '.["faith-unstable"]' nix/pkgs/versions.json 2>/dev/null)" \
     "$(fennel --eval "(print (. (require :faith-unstable) :version))" 2>/dev/null)"
 test $? -eq 0 || ANY_ERROR=true
 
 check_version "Fnlfmt stable" \
-    "$(grep fnlfmt-stable nix/versions.nix 2>/dev/null | cut -d'"' -f2)" \
+    "$(jq -r '.["fnlfmt-stable"]' nix/pkgs/versions.json 2>/dev/null)" \
     "$(fnlfmt --version 2>/dev/null | cut -d' ' -f3)"
 test $? -eq 0 || ANY_ERROR=true
 
 check_version "Fnlfmt unstable" \
-    "$(grep fnlfmt-unstable nix/versions.nix 2>/dev/null | cut -d'"' -f2)" \
+    "$(jq -r '.["fnlfmt-unstable"]' nix/pkgs/versions.json 2>/dev/null)" \
     "$(fnlfmt-unstable --version 2>/dev/null | cut -d' ' -f3)"
 test $? -eq 0 || ANY_ERROR=true
 
 check_version "Fenneldoc" \
-    "$(grep fenneldoc nix/versions.nix 2>/dev/null | cut -d'"' -f2)" \
-    "$(grep 'FENNELDOC_VERSION =' $FENNELDOC_PATH 2>/dev/null | cut -d' ' -f3 | sed -E 's|\[\[(.*)]]|\1|')"
+    "$(jq -r '.["fenneldoc"]' nix/pkgs/versions.json 2>/dev/null)" \
+    "$(grep 'FENNELDOC_VERSION =' "$FENNELDOC_PATH" 2>/dev/null | cut -d' ' -f3 | sed -E 's|\[\[(.*)]]|\1|')"
 test $? -eq 0 || ANY_ERROR=true
 
 if [ "$ANY_ERROR" = true ]

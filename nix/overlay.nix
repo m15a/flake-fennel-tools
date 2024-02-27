@@ -72,4 +72,14 @@ in
     src = inputs.fenneldoc;
     lua = final.lua5_4;
   };
+  fennel-ls = final.callPackage ./pkgs/fennel-ls {
+    version = packageVersions.fennel-ls-stable;
+    src = inputs.fennel-ls-stable;
+    lua = final.lua5_4;
+  };
+  fennel-ls-unstable = final.callPackage ./pkgs/fennel-ls {
+    version = inputs.fennel-ls-unstable.lastModifiedDate;
+    src = inputs.fennel-ls-unstable;
+    lua = final.lua5_4;
+  };
 }

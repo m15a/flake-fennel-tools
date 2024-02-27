@@ -16,9 +16,10 @@ There are a number of good development tools for [Fennel][1] programming:
 [Faith][2] for testing,
 [Fennel Format][3] for formatting code,
 [Fenneldoc][4] for generating documentation,
-etc. (find more in [Fennel wiki][5]).
+[fennel-ls][5] for linting,
+etc. (find more in [Fennel wiki][6]).
 
-Some of these tools are missing in [nixpkgs][6][^1].
+Some of these tools are missing in [nixpkgs][7][^1].
 This flake aims to help Fennel developers using Nix by providing Fennel development
 tools *en masse*, including those missing ones.
 
@@ -162,6 +163,26 @@ pkgs.fenneldoc # development version (1.0.1-dev as of Feb 2024)
 Again, once installed, you can just use it.
 For more information, read the document in [Fenneldoc's repository][4].
 
+### fennel-ls
+
+A language server for Fennel. Attributes:
+
+```nix
+pkgs.fennel-ls # stable version (0.1.1 as of Feb 2024)
+# or
+pkgs.fennel-ls-unstable # main branch head
+sk
+```
+
+Note that, regardless of this flake, you can use the official nixpkgs'
+package `pkgs.fennel-ls` or the Nix flake provided by fennel-ls itself:
+
+```nix
+inputs.fennel-ls.url = "sourcehut:~xerool/fennel-ls/main";
+```
+
+This flake provides its own `fennel-ls` package just for completeness.
+
 ## License
 
 [BSD 3-clause](LICENSE)
@@ -170,7 +191,8 @@ For more information, read the document in [Fenneldoc's repository][4].
 [2]: https://git.sr.ht/~technomancy/faith
 [3]: https://git.sr.ht/~technomancy/fnlfmt
 [4]: https://gitlab.com/andreyorst/fenneldoc
-[5]: https://wiki.fennel-lang.org/#tools
-[6]: https://github.com/NixOS/nixpkgs
+[5]: https://sourcehut/~xerool/fennel-ls/
+[6]: https://wiki.fennel-lang.org/#tools
+[7]: https://github.com/NixOS/nixpkgs
 
 [^1]: `fnlfmt` and `fennel-ls` are available in nixpkgs as of Feb 2024.

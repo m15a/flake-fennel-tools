@@ -7,8 +7,8 @@ ANY_ERROR=false
 check_version() {
     local name expected actual
     name="$1"
-    expected="$2"
-    actual="$3"
+    expected="$(jq -r ".[\"$name\"]" nix/pkgs/versions.json 2>/dev/null)"
+    actual="$2"
 
     # Strip git short commit hash if any.
     actual_without_hash="$(echo "$actual" | sed -E 's|-[0-9a-fA-F]+$||')"
@@ -22,39 +22,32 @@ check_version() {
     fi
 }
 
-check_version "Fennel stable" \
-    "$(jq -r '.["fennel-stable"]' nix/pkgs/versions.json 2>/dev/null)" \
+check_version "fennel-stable" \
     "$(fennel --version 2>/dev/null | cut -d' ' -f2)"
 test $? -eq 0 || ANY_ERROR=true
 
-check_version "Fennel unstable" \
-    "$(jq -r '.["fennel-unstable"]' nix/pkgs/versions.json 2>/dev/null)" \
+check_version "fennel-unstable" \
     "$(fennel-unstable --version 2>/dev/null | cut -d' ' -f2)"
 test $? -eq 0 || ANY_ERROR=true
 
-check_version "Faith stable" \
-    "$(jq -r '.["faith-stable"]' nix/pkgs/versions.json 2>/dev/null)" \
+check_version "faith-stable" \
     "$(fennel --eval "(print (. (require :faith) :version))" 2>/dev/null)"
 test $? -eq 0 || ANY_ERROR=true
 
-check_version "Faith unstable" \
-    "$(jq -r '.["faith-unstable"]' nix/pkgs/versions.json 2>/dev/null)" \
+check_version "faith-unstable" \
     "$(fennel --eval "(print (. (require :faith-unstable) :version))" 2>/dev/null)"
 test $? -eq 0 || ANY_ERROR=true
 
-check_version "Fnlfmt stable" \
-    "$(jq -r '.["fnlfmt-stable"]' nix/pkgs/versions.json 2>/dev/null)" \
+check_version "fnlfmt-stable" \
     "$(fnlfmt --version 2>/dev/null | cut -d' ' -f3)"
 test $? -eq 0 || ANY_ERROR=true
 
-check_version "Fnlfmt unstable" \
-    "$(jq -r '.["fnlfmt-unstable"]' nix/pkgs/versions.json 2>/dev/null)" \
+check_version "fnlfmt-unstable" \
     "$(fnlfmt-unstable --version 2>/dev/null | cut -d' ' -f3)"
 test $? -eq 0 || ANY_ERROR=true
 
-check_version "Fenneldoc" \
-    "$(jq -r '.["fenneldoc"]' nix/pkgs/versions.json 2>/dev/null)" \
-    "$(grep 'FENNELDOC_VERSION =' "$FENNELDOC_PATH" 2>/dev/null | cut -d' ' -f3 | sed -E 's|\[\[(.*)]]|\1|')"
+check_version "fenneldoc" \
+    "$(grep 'FENNELDOC_VERSION =' "$FENNELDOC_PATH" 2>/dev/null | cut -d' ' -f3 | sed -E 's|\[\[([^]]+)]]|\1|')"
 test $? -eq 0 || ANY_ERROR=true
 
 if [ "$ANY_ERROR" = true ]

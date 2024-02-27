@@ -191,7 +191,7 @@ This flake provides its own `fennel-ls` package just for completeness.
 [2]: https://git.sr.ht/~technomancy/faith
 [3]: https://git.sr.ht/~technomancy/fnlfmt
 [4]: https://gitlab.com/andreyorst/fenneldoc
-[5]: https://sourcehut/~xerool/fennel-ls/
+[5]: https://sr.ht/~xerool/fennel-ls/
 [6]: https://wiki.fennel-lang.org/#tools
 [7]: https://github.com/NixOS/nixpkgs
 

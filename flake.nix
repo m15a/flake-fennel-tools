@@ -30,6 +30,14 @@
       url = "sourcehut:~technomancy/faith/main";
       flake = false;
     };
+    fennel-ls-stable = {
+      url = "sourcehut:~xerool/fennel-ls/0.1.1";
+      flake = false;
+    };
+    fennel-ls-unstable = {
+      url = "sourcehut:~xerool/fennel-ls/main";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, flake-utils, ... } @ inputs:
@@ -69,7 +77,9 @@
             faith-unstable
             fnlfmt
             fnlfmt-unstable
-            fenneldoc;
+            fenneldoc
+            fennel-ls
+            fennel-ls-unstable;
         };
 
         apps = with flake-utils.lib;

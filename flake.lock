@@ -34,6 +34,40 @@
         "type": "sourcehut"
       }
     },
+    "fennel-ls-stable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708409141,
+        "narHash": "sha256-DnUEjq2xmUr4R1PzcGYQsPvBFYZxhb6U3PpxorVTm2Y=",
+        "owner": "~xerool",
+        "repo": "fennel-ls",
+        "rev": "7d63ca4617efeca28ed9b8c55594c24e2ea914ba",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~xerool",
+        "ref": "0.1.1",
+        "repo": "fennel-ls",
+        "type": "sourcehut"
+      }
+    },
+    "fennel-ls-unstable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708753965,
+        "narHash": "sha256-EX3B0NSiuLBs8BGHHsPjJCUcEVR2Ln0KvFUdVO1wVKc=",
+        "owner": "~xerool",
+        "repo": "fennel-ls",
+        "rev": "cf794d4934674b3668a8824349f9020c4fd1512d",
+        "type": "sourcehut"
+      },
+      "original": {
+        "owner": "~xerool",
+        "ref": "main",
+        "repo": "fennel-ls",
+        "type": "sourcehut"
+      }
+    },
     "fennel-stable": {
       "flake": false,
       "locked": {
@@ -157,6 +191,8 @@
       "inputs": {
         "faith-stable": "faith-stable",
         "faith-unstable": "faith-unstable",
+        "fennel-ls-stable": "fennel-ls-stable",
+        "fennel-ls-unstable": "fennel-ls-unstable",
         "fennel-stable": "fennel-stable",
         "fennel-unstable": "fennel-unstable",
         "fenneldoc": "fenneldoc",

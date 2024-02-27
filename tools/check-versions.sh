@@ -50,6 +50,14 @@ check_version "fenneldoc" \
     "$(grep 'FENNELDOC_VERSION =' "$FENNELDOC_PATH" 2>/dev/null | cut -d' ' -f3 | sed -E 's|\[\[([^]]+)]]|\1|')"
 test $? -eq 0 || ANY_ERROR=true
 
+check_version "fennel-ls-stable" \
+    "$(grep -E '^## [[:digit:]]+\.[[:digit:]]+' "$FENNEL_LS_CHANGELOG_PATH" | head -n1 | sed -E 's|## ([^\s]+)|\1|')"
+test $? -eq 0 || ANY_ERROR=true
+
+check_version "fennel-ls-unstable" \
+    "TODO"
+test $? -eq 0 || ANY_ERROR=true
+
 if [ "$ANY_ERROR" = true ]
 then
     exit 1

@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning][2].
 
 ## Unreleased
 
+### Added packages
+
+- fennel-ls: stable `0.1.1` and the unstable version
+
 ## [0.1.3][v0.1.3] (2024-02-25)
 
 ### Bumped package versions

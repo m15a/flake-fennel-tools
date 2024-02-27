@@ -6,6 +6,7 @@
 , fnlfmt
 , fnlfmt-unstable
 , fenneldoc
+, fennel-ls
 , jq
 }:
 
@@ -37,4 +38,5 @@ mkShell {
   ];
   FENNEL_PATH = "${faith}/bin/?;${faith-unstable'}/bin/?";
   FENNELDOC_PATH = "${fenneldoc}/bin/fenneldoc";
+  FENNEL_LS_CHANGELOG_PATH = "${fennel-ls.src}/changelog.md";
 }

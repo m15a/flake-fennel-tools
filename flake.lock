@@ -54,11 +54,11 @@
     "fennel-ls-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1709433018,
-        "narHash": "sha256-AtU1vwuxUQCqQqNp8t9pdAewASC+hVxTDHDuzlKA5E4=",
+        "lastModified": 1709534327,
+        "narHash": "sha256-Srr/0Dcd2zBAq2agerug6DZnUjMseDKdzW9DPplZVCY=",
         "owner": "~xerool",
         "repo": "fennel-ls",
-        "rev": "c0e5a431ff9aec128e278a55e89630d2fae41df5",
+        "rev": "cc05d7089f4fb2b9a1ebaffc3f597da1a7390d86",
         "type": "sourcehut"
       },
       "original": {
@@ -157,11 +157,11 @@
     "fnlfmt-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1706065499,
-        "narHash": "sha256-DfnN8B6ZwP7Io6ax4H5lmPbe5Wkv6yKkErqxk81OL5o=",
+        "lastModified": 1709495017,
+        "narHash": "sha256-XNPj/rgO27c2uvLR6RL/W+CUWER42PvChWL+yusEyCU=",
         "owner": "~technomancy",
         "repo": "fnlfmt",
-        "rev": "2e1d288e90acd62904eec2cff0dee1f1956db9e2",
+        "rev": "dba3223331e256d5af8ef1125a3927840af0fa5c",
         "type": "sourcehut"
       },
       "original": {

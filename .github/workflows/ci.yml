@@ -26,4 +26,4 @@ jobs:
 
       - name: Check versions
         run: |
-          nix develop .#ci-check-versions --command bash -c "./tools/check-versions.sh"
+          nix develop .#ci-check-versions --command bash -c "./tools/check-versions.fnl"

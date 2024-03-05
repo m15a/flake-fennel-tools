@@ -88,11 +88,11 @@
     "fennel-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1708916777,
-        "narHash": "sha256-uuF3ZZvrWKyNAxXhovRZD0d8CFxghDr+lgC+UjqZyeM=",
+        "lastModified": 1709621509,
+        "narHash": "sha256-atW/mzccf20sw4/dWKAJGsrR/ia269Io8gKdp9E9UrI=",
         "owner": "~technomancy",
         "repo": "fennel",
-        "rev": "fa2687ff374943962dbbd792ef3e5b704bbe228b",
+        "rev": "8f9c28186d2e843c55b2f7b2a36b0ef123c66fc7",
         "type": "sourcehut"
       },
       "original": {

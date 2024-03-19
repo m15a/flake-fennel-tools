@@ -57,6 +57,7 @@ It could look like:
           pkgs.mkShell {
             buildInputs = [
               fennel
+              fennel.man # if you want to read man pages
               pkgs.faith
               pkgs.fnlfmt
               pkgs.fenneldoc

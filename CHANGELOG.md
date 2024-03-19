@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning][2].
 
 ## Unreleased
 
+### Improved
+
+- fennel: separate `out` and `man` pacakges.
+  - No need to download pandoc package everytime, useful for CI.
+
 ## [0.2.0] (2024-02-27)
 
 ### Added packages

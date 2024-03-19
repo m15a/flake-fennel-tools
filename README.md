@@ -57,7 +57,6 @@ It could look like:
           pkgs.mkShell {
             buildInputs = [
               fennel
-              fennel.man # if you want to read man pages
               pkgs.faith
               pkgs.fnlfmt
               pkgs.fenneldoc
@@ -65,6 +64,12 @@ It could look like:
               readline
             ]);
             FENNEL_PATH = "${pkgs.faith}/bin/?";
+            FENNEL_MACRO_PATH = "./src/?.fnl;./src/?/init-macros.fnl";
+
+            shellHook = ''
+              # if you want to read man pages
+              export MANPATH="${fennel.man}/share/man''${MANPATH:+:''${MANPATH}}"
+            '';
           };
       });
 }

@@ -1,0 +1,20 @@
+commit 025cb6f429564e40de077127c7066f782549b0e8
+Author: NACAMURA Mitsuhiro <m15@m15a.dev>
+Date:   Tue Mar 19 10:59:41 2024 +0900
+
+    fix: separate manpage installation
+
+diff --git a/Makefile b/Makefile
+index e8e570a..210a385 100644
+--- a/Makefile
++++ b/Makefile
+@@ -155,6 +155,9 @@ endef
+ install: fennel fennel.lua
+ 	mkdir -p $(DESTDIR)$(BIN_DIR) && cp fennel $(DESTDIR)$(BIN_DIR)/
+ 	mkdir -p $(DESTDIR)$(LUA_LIB_DIR) && cp fennel.lua $(DESTDIR)$(LUA_LIB_DIR)/
++
++.PHONY: install-man
++install-man: $(MAN_DOCS)
+ 	$(foreach doc,$(MAN_DOCS),\
+ 		$(call maninst,$(doc),$(DESTDIR)$(MAN_DIR)/$(doc)))
+ 

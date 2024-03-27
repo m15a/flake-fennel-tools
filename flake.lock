@@ -54,11 +54,11 @@
     "fennel-ls-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1711243492,
-        "narHash": "sha256-c57sU3kftNIwBBrY8mrvI5OFSS8cbWNRIfqfVCsQI+g=",
+        "lastModified": 1711480377,
+        "narHash": "sha256-6eXO2rLyh+pOOyp8EQGN/VKasn6XdIHV+y2gVUlKuxY=",
         "owner": "~xerool",
         "repo": "fennel-ls",
-        "rev": "549e2407871abecdc7994f3d889ed82ea59e540b",
+        "rev": "a1c4e84910757d9b8d6b03248d94ce7ca4daed5b",
         "type": "sourcehut"
       },
       "original": {
@@ -173,11 +173,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1711370797,
-        "narHash": "sha256-2xu0jVSjuKhN97dqc4bVtvEH52Rwh6+uyI1XCnzoUyI=",
+        "lastModified": 1711401922,
+        "narHash": "sha256-QoQqXoj8ClGo0sqD/qWKFWezgEwUL0SUh37/vY2jNhc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c726225724e681b3626acc941c6f95d2b0602087",
+        "rev": "07262b18b97000d16a4bdb003418bd2fb067a932",
         "type": "github"
       },
       "original": {

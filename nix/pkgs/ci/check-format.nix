@@ -1,7 +1,7 @@
 { mkShell
 , statix
 , deadnix
-, nixpkgs-fmt
+, nixfmt
 , pre-commit
 }:
 
@@ -9,7 +9,7 @@ mkShell {
   packages = [
     statix
     deadnix
-    nixpkgs-fmt
+    nixfmt
     pre-commit
   ];
 }

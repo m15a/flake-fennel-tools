@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning][2].
 
 ## [Unreleased]
 
+## [0.3.0] (2024-03-30)
+
 ### Improved
 
 - fennel: separate `out` and `man` pacakges.
@@ -51,6 +53,7 @@ and this project adheres to [Semantic Versioning][2].
   - Fenneldoc: version `1.0.1-dev`
 
 [Unreleased]: https://github.com/m15a/flake-fennel-tools/tree/HEAD
+[0.3.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.3.0
 [0.2.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.2.0
 [0.1.3]: https://github.com/m15a/flake-fennel-tools/tree/v0.1.3
 [0.1.2]: https://github.com/m15a/flake-fennel-tools/tree/v0.1.2

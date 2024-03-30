@@ -51,7 +51,7 @@
         inherit fennel-tools;
         default = fennel-tools;
       };
-    } // (flake-utils.lib.eachDefaultSystem (system:
+    } // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
@@ -60,14 +60,23 @@
       in rec {
         packages = {
           inherit (pkgs)
-            fennel-luajit fennel-lua5_1 fennel-lua5_2 fennel-lua5_3
-            fennel-lua5_4
+            fennel-lua5_1 fennel-unstable-lua5_1
 
-            fennel-unstable-luajit fennel-unstable-lua5_1 fennel-unstable-lua5_2
-            fennel-unstable-lua5_3 fennel-unstable-lua5_4
+            fennel-lua5_2 fennel-unstable-lua5_2
 
-            faith faith-unstable fnlfmt fnlfmt-unstable fenneldoc fennel-ls
-            fennel-ls-unstable;
+            fennel-lua5_3 fennel-unstable-lua5_3
+
+            fennel-lua5_4 fennel-unstable-lua5_4
+
+            fennel-luajit fennel-unstable-luajit
+
+            faith faith-unstable
+
+            fnlfmt fnlfmt-unstable
+
+            fenneldoc
+
+            fennel-ls fennel-ls-unstable;
         };
 
         apps = with flake-utils.lib;
@@ -84,5 +93,5 @@
             nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.bumpfnl ];
           });
         };
-      }));
+      });
 }

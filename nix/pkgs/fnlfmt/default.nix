@@ -19,10 +19,6 @@ stdenv.mkDerivation rec {
 
   makeFlags = [ "PREFIX=$(out)" ];
 
-  postBuild = ''
-    patchShebangs .
-  '';
-
   meta = with lib; {
     description = "Format your Fennel!";
     homepage = "https://git.sr.ht/~technomancy/fnlfmt";

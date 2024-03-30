@@ -12,27 +12,35 @@ Nix flake of Fennel development tools.
 
 ## Description
 
-There are a number of good development tools for [Fennel][1] programming:
-[Faith][2] for testing,
-[Fennel Format][3] for formatting code,
-[Fenneldoc][4] for generating documentation,
-[fennel-ls][5] for linting,
-etc. (find more in [Fennel wiki][6]).
+There are a number of good development tools for [Fennel][1]
+programming: [Faith][2] for testing, [Fennel Format][3] for formatting
+code, [Fenneldoc][4] for generating documentation, [fennel-ls][5] for
+linting, etc. (find more in [Fennel wiki][6]).
 
-Some of these tools are missing in [nixpkgs][7][^1].
-This flake aims to help Fennel developers using Nix by providing Fennel development
-tools *en masse*, including those missing ones.
+Some of these tools are missing in [nixpkgs][7][^1]. This flake aims to
+help Fennel developers using Nix by providing Fennel development tools
+*en masse*, including those missing ones.
 
-Moreover, it provides Fennel development version (i.e., `main` branch head),
-which is updated once every day.
-It would help you test your Fennel application/library against the cutting edge.
+Moreover, it provides Fennel development version (i.e., `main` branch),
+which is updated once every day. It would help you test your Fennel
+application/library against the cutting edge.
+
+[1]: https://fennel-lang.org/
+[2]: https://git.sr.ht/~technomancy/faith
+[3]: https://git.sr.ht/~technomancy/fnlfmt
+[4]: https://gitlab.com/andreyorst/fenneldoc
+[5]: https://sr.ht/~xerool/fennel-ls/
+[6]: https://wiki.fennel-lang.org/#tools
+[7]: https://github.com/NixOS/nixpkgs
+
+[^1]: `fnlfmt` and `fennel-ls` are available in nixpkgs as of Feb 2024.
 
 ## Usage
 
 ### Overlay
 
-Add the default overlay of this flake to your `flake.nix`.
-It could look like:
+Add the default overlay of this flake to your `flake.nix`. It could
+look like:
 
 ```nix
 {
@@ -93,9 +101,9 @@ Try installing readline via luarocks for a better repl experience.
 ### Fennel
 
 This flake exposes a number of Fennel variants, each being different in
-Fennel version, stable (`1.4.1` as of Feb 2024) or unstable (`main` branch
-head), and Lua version/implementation, PUC Lua from `5.1` to `5.4`
-or LuaJIT.
+Fennel version, stable (`1.4.1` as of Feb 2024) or unstable (`main`
+branch), and Lua version/implementation, PUC Lua from `5.1` to `5.4` or
+LuaJIT.
 
 You can access them via attributes
 
@@ -105,7 +113,8 @@ pkgs."fennel-${LUA}" # stable version
 pkgs."fennel-unstable-${LUA}" # main branch head
 ```
 
-where `${LUA}` is either one of `lua5_1`, `lua5_2`, `lua5_3`, `lua5_4`, and `luajit`. 
+where `${LUA}` is either one of `lua5_1`, `lua5_2`, `lua5_3`, `lua5_4`,
+and `luajit`. 
 
 ### Faith
 
@@ -118,11 +127,12 @@ pkgs.faith-unstable # main branch head
 ```
 
 In this flake, the package contains a runnable script of Faith,
-`bin/faith`. The script begins with shebang line `#!/usr/bin/env fennel`,
-thus enabling you to test your code against different Fennel variants.
+`bin/faith`. The script begins with shebang line
+`#!/usr/bin/env fennel`, thus enabling you to test your code against
+different Fennel variants.
 
-Don't forget to add the Faith script path to environment variable `$FENNEL_PATH`,
-so that you can require Faith module in your test code.
+Don't forget to add the Faith script path to environment variable
+`$FENNEL_PATH`, so that you can require Faith module in your test code.
 It could be set in `devShell`:
 
 ```nix
@@ -155,8 +165,9 @@ pkgs.fnlfmt # stable version (0.3.1 as of Feb 2024)
 pkgs.fnlfmt-unstable # main branch head
 ```
 
-Nothing special has been done for Nix usage. Install it and format code as usual.
-For more information, read the document in [Fennel Format's repository][3].
+Nothing special has been done for Nix usage. Install it and format code
+as usual. For more information, read the document in
+[Fennel Format's repository][3].
 
 ### Fenneldoc
 
@@ -166,8 +177,8 @@ A Fennel API documentation generator. Attribute:
 pkgs.fenneldoc # development version (1.0.1-dev as of Feb 2024)
 ```
 
-Again, once installed, you can just use it.
-For more information, read the document in [Fenneldoc's repository][4].
+Again, once installed, you can just use it. For more information, read
+the document in [Fenneldoc's repository][4].
 
 ### fennel-ls
 
@@ -193,12 +204,4 @@ This flake provides its own `fennel-ls` package just for completeness.
 
 [BSD 3-clause](LICENSE)
 
-[1]: https://fennel-lang.org/
-[2]: https://git.sr.ht/~technomancy/faith
-[3]: https://git.sr.ht/~technomancy/fnlfmt
-[4]: https://gitlab.com/andreyorst/fenneldoc
-[5]: https://sr.ht/~xerool/fennel-ls/
-[6]: https://wiki.fennel-lang.org/#tools
-[7]: https://github.com/NixOS/nixpkgs
-
-[^1]: `fnlfmt` and `fennel-ls` are available in nixpkgs as of Feb 2024.
+<!-- vim:set tw=72 spell nowrap: -->

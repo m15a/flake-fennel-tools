@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning][2].
 
 ## [Unreleased]
 
+### Improved
+
+- fennel-ls-unstable: append development version, e.g.,
+  `0.1.2-dev-5fa5a0a`.
+
 ## [0.3.0] (2024-03-30)
 
 ### Improved

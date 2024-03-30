@@ -69,7 +69,8 @@ in buildPackageSet {
     lua = final.lua5_4;
   };
   fennel-ls-unstable = final.callPackage ./pkgs/fennel-ls {
-    version = inputs.fennel-ls-unstable.lastModifiedDate;
+    version = packageVersions.fennel-ls-unstable;
+    inherit (inputs.fennel-ls-unstable) shortRev;
     src = inputs.fennel-ls-unstable;
     lua = final.lua5_4;
   };

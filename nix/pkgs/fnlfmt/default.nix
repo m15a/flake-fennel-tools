@@ -11,8 +11,10 @@ stdenv.mkDerivation rec {
   inherit version src;
 
   nativeBuildInputs = [
-    lua
     lua.pkgs.fennel
+  ];
+  buildInputs = [
+    lua
   ];
 
   postPatch = with lib;

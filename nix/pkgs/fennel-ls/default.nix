@@ -9,17 +9,13 @@ stdenv.mkDerivation rec {
   pname = "fennel-ls";
   inherit version src;
 
-  nativeBuildInputs = [
+  buildInputs = [
     lua
   ];
 
   makeFlags = [
     "PREFIX=$(out)"
   ];
-
-  postBuild = ''
-    patchShebangs .
-  '';
 
   meta = with lib; {
     description = "A language server for fennel";

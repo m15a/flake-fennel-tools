@@ -13,7 +13,7 @@ let
     pname = "fennel";
     inherit version src;
 
-    nativeBuildInputs = [
+    buildInputs = [
       lua
     ];
 
@@ -34,10 +34,6 @@ let
     makeFlags = [
       "PREFIX=$(out)"
     ];
-
-    postBuild = ''
-      patchShebangs .
-    '';
 
     passthru = { inherit lua man; };
 

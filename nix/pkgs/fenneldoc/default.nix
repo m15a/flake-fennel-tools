@@ -11,8 +11,10 @@ stdenv.mkDerivation rec {
   inherit version src;
 
   nativeBuildInputs = [
-    lua
     lua.pkgs.fennel
+  ];
+  buildInputs = [
+    lua
   ];
 
   postPatch = ''
@@ -23,10 +25,6 @@ stdenv.mkDerivation rec {
     "VERSION=${version + optionalString (shortRev != null) "-${shortRev}"}"
     "PREFIX=$(out)"
   ];
-
-  postBuild = ''
-    patchShebangs .
-  '';
 
   meta = with lib; {
     description = "Tool for automatic documentation generation and validation for the Fennel language.";

@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning][2].
 [1]: https://keepachangelog.com/en/1.0.0/
 [2]: https://semver.org/spec/v2.0.0.html
 
-## Unreleased
+## [Unreleased]
 
 ### Improved
 
@@ -50,6 +50,7 @@ and this project adheres to [Semantic Versioning][2].
   - Fnlfmt: versions `0.3.1` und `0.3.2-dev`
   - Fenneldoc: version `1.0.1-dev`
 
+[Unreleased]: https://github.com/m15a/flake-fennel-tools/tree/HEAD
 [0.2.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.2.0
 [0.1.3]: https://github.com/m15a/flake-fennel-tools/tree/v0.1.3
 [0.1.2]: https://github.com/m15a/flake-fennel-tools/tree/v0.1.2

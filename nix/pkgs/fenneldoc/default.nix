@@ -1,8 +1,11 @@
 { version, shortRev ? null, src, lua, stdenv, lib }:
 
-stdenv.mkDerivation rec {
+let v = version + lib.optionalString (shortRev != null) "-${shortRev}";
+
+in stdenv.mkDerivation rec {
   pname = "fenneldoc";
-  inherit version src;
+  version = v;
+  inherit src;
 
   nativeBuildInputs = [ lua.pkgs.fennel ];
   buildInputs = [ lua ];
@@ -11,10 +14,7 @@ stdenv.mkDerivation rec {
     sed -i Makefile -e 's|\./fenneldoc|lua fenneldoc|'
   '';
 
-  makeFlags = with lib; [
-    "VERSION=${version + optionalString (shortRev != null) "-${shortRev}"}"
-    "PREFIX=$(out)"
-  ];
+  makeFlags = [ "VERSION=${v}" "PREFIX=$(out)" ];
 
   meta = with lib; {
     description =

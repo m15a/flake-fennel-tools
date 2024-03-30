@@ -1,16 +1,21 @@
 { version, shortRev ? null, src, stdenv, lib }:
 
-stdenv.mkDerivation rec {
-  pname = "faith";
-  inherit version src;
+let
+  inherit (lib) optionalString strings;
 
-  postPatch = with lib;
-    let version' = strings.escapeRegex version;
-    in optionalString (shortRev != null) ''
-      # Append short commit hash to version string if any.
-      sed -E -i faith.fnl \
-          -e "s|(\{: run : skip :version \")(${version'})(\")|\1${version}-${shortRev}\3|"
-    '';
+  v' = strings.escapeRegex version;
+  v = version + optionalString (shortRev != null) "-${shortRev}";
+
+in stdenv.mkDerivation rec {
+  pname = "faith";
+  version = v;
+  inherit src;
+
+  postPatch = optionalString (shortRev != null) ''
+    # Append short commit hash to version string if any.
+    sed -E -i faith.fnl \
+        -e "s|(\{: run : skip :version \")(${v'})(\")|\1${v}\3|"
+  '';
 
   buildPhase = ''
     runHook preBuild

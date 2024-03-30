@@ -30,6 +30,8 @@ stdenv.mkDerivation rec {
     runHook postBuild
   '';
 
+  dontFixup = true;
+
   installPhase = ''
     runHook preInstall
     mkdir -p $out/bin

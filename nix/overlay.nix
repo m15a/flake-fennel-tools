@@ -3,29 +3,19 @@
 final: prev:
 
 let
-  fennelVariants = [
-    "stable"
-    "unstable"
-  ];
+  fennelVariants = [ "stable" "unstable" ];
 
-  luaVariants = [
-    "luajit"
-    "lua5_1"
-    "lua5_2"
-    "lua5_3"
-    "lua5_4"
-  ];
+  luaVariants = [ "luajit" "lua5_1" "lua5_2" "lua5_3" "lua5_4" ];
 
-  inherit (prev.lib)
-    strings readFile optionalAttrs cartesianProductOfSets;
+  inherit (prev.lib) strings readFile optionalAttrs cartesianProductOfSets;
 
   packageVersions = strings.fromJSON (readFile ./pkgs/versions.json);
 
   buildFennel = { fennelVariant, luaVariant }: {
-    name =
-      if fennelVariant == "stable"
-      then "fennel-${luaVariant}"
-      else "fennel-${fennelVariant}-${luaVariant}";
+    name = if fennelVariant == "stable" then
+      "fennel-${luaVariant}"
+    else
+      "fennel-${fennelVariant}-${luaVariant}";
     value = final.callPackage ./pkgs/fennel ({
       version = packageVersions."fennel-${fennelVariant}";
       src = inputs."fennel-${fennelVariant}";
@@ -35,11 +25,9 @@ let
     }));
   };
 
-  buildPackageSet = { builder, args }:
-    builtins.listToAttrs (map builder args);
-in
+  buildPackageSet = { builder, args }: builtins.listToAttrs (map builder args);
 
-(buildPackageSet {
+in (buildPackageSet {
   builder = buildFennel;
   args = cartesianProductOfSets {
     fennelVariant = fennelVariants;

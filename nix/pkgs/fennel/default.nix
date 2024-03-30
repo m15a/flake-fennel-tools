@@ -1,39 +1,23 @@
-{ version
-, shortRev ? null
-, src
-, lua
-, stdenv
-, lib
-, fetchpatch
-, pandoc
-}:
+{ version, shortRev ? null, src, lua, stdenv, lib, fetchpatch, pandoc }:
 
 let
   out = stdenv.mkDerivation rec {
     pname = "fennel";
     inherit version src;
 
-    buildInputs = [
-      lua
-    ];
+    buildInputs = [ lua ];
 
-    patches = [
-      ./patches/man-inst.patch
-    ];
+    patches = [ ./patches/man-inst.patch ];
 
     postPatch = with lib;
-      let
-        version' = strings.escapeRegex version;
-      in
-      optionalString (shortRev != null) ''
+      let version' = strings.escapeRegex version;
+      in optionalString (shortRev != null) ''
         # Append short commit hash to version string.
         sed -E -i src/fennel/utils.fnl \
             -e "s|(local version :)(${version'})(\))|\1${version}-${shortRev}\3|"
       '';
 
-    makeFlags = [
-      "PREFIX=$(out)"
-    ];
+    makeFlags = [ "PREFIX=$(out)" ];
 
     passthru = { inherit lua man; };
 
@@ -48,18 +32,14 @@ let
   man = stdenv.mkDerivation rec {
     inherit (out) pname version src;
 
-    nativeBuildInputs = [
-      out
-      lua
-      pandoc
-    ];
+    nativeBuildInputs = [ out lua pandoc ];
 
     patches = with lib;
-      out.patches ++
-      optionals (versionOlder version "1.4.2") [
+      out.patches ++ optionals (versionOlder version "1.4.2") [
         (fetchpatch {
           name = "fix Makefile manpage installation";
-          url = "https://git.sr.ht/~technomancy/fennel/commit/f0e341239b0bdbbc1aa5f2b715a3389e2ab07646.patch";
+          url =
+            "https://git.sr.ht/~technomancy/fennel/commit/f0e341239b0bdbbc1aa5f2b715a3389e2ab07646.patch";
           hash = "sha256-/zWcpyb5qd8ffW0FSJsXXm0nq4xWWfdrDpI41+JZZ0E=";
         })
       ];
@@ -68,18 +48,13 @@ let
       sed -E -i Makefile -e 's|\./fennel|fennel|'
     '';
 
-    makeFlags = [
-      "PREFIX=$(out)"
-    ];
+    makeFlags = [ "PREFIX=$(out)" ];
 
-    buildFlags = [
-      "man"
-    ];
+    buildFlags = [ "man" ];
 
     installTargets = "install-man";
 
     inherit (out) meta;
   };
-in
 
-out
+in out

@@ -1,21 +1,12 @@
-{ version
-, src
-, lua
-, stdenv
-, lib
-}:
+{ version, src, lua, stdenv, lib }:
 
 stdenv.mkDerivation rec {
   pname = "fennel-ls";
   inherit version src;
 
-  buildInputs = [
-    lua
-  ];
+  buildInputs = [ lua ];
 
-  makeFlags = [
-    "PREFIX=$(out)"
-  ];
+  makeFlags = [ "PREFIX=$(out)" ];
 
   meta = with lib; {
     description = "A language server for fennel";

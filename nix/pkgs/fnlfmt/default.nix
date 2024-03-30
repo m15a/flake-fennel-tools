@@ -1,27 +1,15 @@
-{ version
-, shortRev ? null
-, src
-, lua
-, stdenv
-, lib
-}:
+{ version, shortRev ? null, src, lua, stdenv, lib }:
 
 stdenv.mkDerivation rec {
   pname = "fnlfmt";
   inherit version src;
 
-  nativeBuildInputs = [
-    lua.pkgs.fennel
-  ];
-  buildInputs = [
-    lua
-  ];
+  nativeBuildInputs = [ lua.pkgs.fennel ];
+  buildInputs = [ lua ];
 
   postPatch = with lib;
-    let
-      version' = strings.escapeRegex version;
-    in
-    optionalString (shortRev != null) ''
+    let version' = strings.escapeRegex version;
+    in optionalString (shortRev != null) ''
       # Append short commit hash to version string.
       sed -E -i fnlfmt.fnl \
           -e "s|(\{: fnlfmt : format-file :version :)(${version'})(\})|\1${version}-${shortRev}\3|"
@@ -29,9 +17,7 @@ stdenv.mkDerivation rec {
       sed -i Makefile -e 's|./fennel|lua fennel|'
     '';
 
-  makeFlags = [
-    "PREFIX=$(out)"
-  ];
+  makeFlags = [ "PREFIX=$(out)" ];
 
   postBuild = ''
     patchShebangs .

@@ -80,8 +80,12 @@
         };
 
         apps = with flake-utils.lib;
-          builtins.mapAttrs
-          (name: _: mkApp { drv = self.packages.${system}.${name}; }) packages;
+          builtins.mapAttrs (name: _:
+            let drv = self.packages.${system}.${name};
+            in mkApp {
+              inherit drv;
+              name = drv.meta.mainProgram or drv.pname;
+            }) packages;
 
         checks = packages;
 

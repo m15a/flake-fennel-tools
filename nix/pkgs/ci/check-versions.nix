@@ -29,7 +29,7 @@ let
 in
 
 mkShell {
-  buildInputs = [
+  packages = [
     fennel-luajit
     fennel-unstable-luajit'
     fnlfmt

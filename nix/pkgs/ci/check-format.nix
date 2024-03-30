@@ -6,7 +6,7 @@
 }:
 
 mkShell {
-  buildInputs = [
+  packages = [
     statix
     deadnix
     nixpkgs-fmt

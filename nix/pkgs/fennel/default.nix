@@ -18,7 +18,7 @@ let
     postPatch = optionalString (shortRev != null) ''
       # Append short commit hash to version string.
       sed -E -i src/fennel/utils.fnl \
-          -e "s|(local version :)(${v'})(\))|\1${v}\3|"
+          -e 's|(local version :)(${v'})(\))|\1${v}\3|'
     '';
 
     makeFlags = [ "PREFIX=$(out)" ];

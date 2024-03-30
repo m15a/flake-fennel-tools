@@ -17,7 +17,7 @@ in stdenv.mkDerivation rec {
   postPatch = optionalString (shortRev != null) ''
     # Append short commit hash to version string.
     sed -E -i fnlfmt.fnl \
-        -e "s|(\{: fnlfmt : format-file :version :)(${v'})(\})|\1${v}\3|"
+        -e 's|(\{: fnlfmt : format-file :version :)(${v'})(\})|\1${v}\3|'
   '' + ''
     sed -i Makefile -e 's|./fennel|lua fennel|'
   '';

@@ -14,7 +14,7 @@ in stdenv.mkDerivation rec {
   postPatch = optionalString (shortRev != null) ''
     # Append short commit hash to version string if any.
     sed -E -i faith.fnl \
-        -e "s|(\{: run : skip :version \")(${v'})(\")|\1${v}\3|"
+        -e 's|(\{: run : skip :version ")(${v'})(")|\1${v}\3|'
   '';
 
   buildPhase = ''

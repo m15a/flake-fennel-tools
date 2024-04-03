@@ -56,29 +56,19 @@ look like:
           inherit system;
           overlays = [ fennel-tools.overlays.default ];
         };
-      in
-      {
-        devShells.default =
-          let
-            fennel = pkgs.fennel-unstable-lua5_3;
-          in
-          pkgs.mkShell {
-            buildInputs = [
-              fennel
-              pkgs.faith
-              pkgs.fnlfmt
-              pkgs.fenneldoc
-            ] ++ (with fennel.lua.pkgs; [
-              readline
-            ]);
-            FENNEL_PATH = "${pkgs.faith}/bin/?";
-            FENNEL_MACRO_PATH = "./src/?.fnl;./src/?/init-macros.fnl";
+      in {
+        devShells.default = let fennel = pkgs.fennel-unstable-luajit;
+        in pkgs.mkShell {
+          packages = [ fennel pkgs.faith pkgs.fnlfmt pkgs.fenneldoc ]
+            ++ (with fennel.lua.pkgs; [ readline ]);
+          FENNEL_PATH = "${pkgs.faith}/bin/?";
+          FENNEL_MACRO_PATH = "./src/?.fnl;./src/?/init-macros.fnl";
 
-            shellHook = ''
-              # if you want to read man pages
-              export MANPATH="${fennel.man}/share/man''${MANPATH:+:''${MANPATH}}"
-            '';
-          };
+          shellHook = ''
+            # if you want to read man pages
+            export MANPATH="${fennel.man}/share/man''${MANPATH:+:''${MANPATH}}"
+          '';
+        };
       });
 }
 ```

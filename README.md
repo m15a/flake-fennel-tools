@@ -100,7 +100,7 @@ You can access them via attributes
 ```nix
 pkgs."fennel-${LUA}" # stable version
 # or
-pkgs."fennel-unstable-${LUA}" # main branch head
+pkgs."fennel-unstable-${LUA}" # main branch
 ```
 
 where `${LUA}` is either one of `lua5_1`, `lua5_2`, `lua5_3`, `lua5_4`,
@@ -113,7 +113,7 @@ A testing library. Attributes:
 ```nix
 pkgs.faith # stable version (0.1.2 as of Feb 2024)
 # or
-pkgs.faith-unstable # main branch head
+pkgs.faith-unstable # main branch
 ```
 
 In this flake, the package contains a runnable script of Faith,
@@ -152,7 +152,7 @@ A Fennel formatter. Attributes:
 ```nix
 pkgs.fnlfmt # stable version (0.3.1 as of Feb 2024)
 # or
-pkgs.fnlfmt-unstable # main branch head
+pkgs.fnlfmt-unstable # main branch
 ```
 
 Nothing special has been done for Nix usage. Install it and format code
@@ -177,7 +177,7 @@ A language server for Fennel. Attributes:
 ```nix
 pkgs.fennel-ls # stable version (0.1.1 as of Feb 2024)
 # or
-pkgs.fennel-ls-unstable # main branch head
+pkgs.fennel-ls-unstable # main branch
 sk
 ```
 

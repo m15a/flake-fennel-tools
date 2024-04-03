@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning][2].
 - fennel-ls-unstable: append development version, e.g.,
   `0.1.2-dev-5fa5a0a`.
 
+### Fixed
+
+- flake.lock: remove unnecessary development dependencies
+  introduced in 0.3.0.
+
 ## [0.3.0] (2024-03-30)
 
 ### Improved

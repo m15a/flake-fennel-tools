@@ -101,6 +101,9 @@ You can access them via attributes
 pkgs."fennel-${LUA}" # stable version
 # or
 pkgs."fennel-unstable-${LUA}" # main branch
+# and man pages
+pkgs."fennel-${LUA}".man
+pkgs."fennel-unstable-${LUA}".man
 ```
 
 where `${LUA}` is either one of `lua5_1`, `lua5_2`, `lua5_3`, `lua5_4`,

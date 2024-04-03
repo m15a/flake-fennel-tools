@@ -5,7 +5,7 @@ set -euo pipefail
 file=CHANGELOG.md
 
 old="$(cat "$file" | grep -Em1 '^## \[[[:digit:]]+\.' | sed -E '1s|.*\[([^]]+)\].*|\1|')"
-bump "$file" "$@"
+nix run sourcehut:~m15a/bump.fnl -- "$file" "$@"
 git add "$file"
 new="$(cat "$file" | grep -Em1 '^## \[[[:digit:]]+\.' | sed -E '1s|.*\[([^]]+)\].*|\1|')"
 

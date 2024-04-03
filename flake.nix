@@ -2,10 +2,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    bumpfnl = {
-      url = "sourcehut:~m15a/bump.fnl/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     fennel-stable = {
       url = "sourcehut:~technomancy/fennel/1.4.2";
       flake = false;
@@ -55,7 +51,7 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ fennel-tools inputs.bumpfnl.overlays.default ];
+          overlays = [ fennel-tools ];
         };
       in rec {
         packages = {
@@ -92,9 +88,7 @@
           ci-check-format = pkgs.callPackage ./nix/pkgs/ci/check-format.nix { };
           ci-check-versions =
             pkgs.callPackage ./nix/pkgs/ci/check-versions.nix { };
-          default = ci-check-format.overrideAttrs (old: {
-            nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.bumpfnl ];
-          });
+          default = ci-check-format;
         };
       });
 }

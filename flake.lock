@@ -88,11 +88,11 @@
     "fennel-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1712290036,
-        "narHash": "sha256-NDRa69jImqNteW5VRcZyXT6OhsTQmwDaicIHtYyvYxw=",
+        "lastModified": 1712364224,
+        "narHash": "sha256-5BgDvyNyQCKGWY4tpfkJjwTEb4NUTyDdutiC48OSxCs=",
         "owner": "~technomancy",
         "repo": "fennel",
-        "rev": "700e61c6038f2999bcc5f0bcf4c448582c576143",
+        "rev": "d3713f64810b64618550ddc5042b659f9ee39926",
         "type": "sourcehut"
       },
       "original": {
@@ -173,11 +173,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1712192574,
-        "narHash": "sha256-LbbVOliJKTF4Zl2b9salumvdMXuQBr2kuKP5+ZwbYq4=",
+        "lastModified": 1712328247,
+        "narHash": "sha256-cswxdMQH0fATfonhXgVfxliuZMfkdrCQQud4cO76eDw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f480f9d09e4b4cf87ee6151eba068197125714de",
+        "rev": "8311011fcea909e0cc9684ada784dae080fbfb60",
         "type": "github"
       },
       "original": {

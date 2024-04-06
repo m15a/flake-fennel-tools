@@ -1,12 +1,18 @@
-{ version, shortRev ? null, src, stdenv, lib }:
+{
+  version,
+  shortRev ? null,
+  src,
+  stdenv,
+  lib,
+}:
 
 let
   inherit (lib) optionalString strings;
 
   v' = strings.escapeRegex version;
   v = version + optionalString (shortRev != null) "-${shortRev}";
-
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   pname = "faith";
   version = v;
   inherit src;

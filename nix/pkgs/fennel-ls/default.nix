@@ -1,12 +1,19 @@
-{ version, shortRev ? null, src, lua, stdenv, lib }:
+{
+  version,
+  shortRev ? null,
+  src,
+  lua,
+  stdenv,
+  lib,
+}:
 
 let
   inherit (lib) optionalString;
 
   # v' = lib.strings.escapeRegex version;
   v = version + optionalString (shortRev != null) "-${shortRev}";
-
-in stdenv.mkDerivation rec {
+in
+stdenv.mkDerivation rec {
   pname = "fennel-ls";
   version = v;
   inherit src;

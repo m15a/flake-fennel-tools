@@ -1,8 +1,16 @@
-{ version, shortRev ? null, src, lua, stdenv, lib }:
+{
+  version,
+  shortRev ? null,
+  src,
+  lua,
+  stdenv,
+  lib,
+}:
 
-let v = version + lib.optionalString (shortRev != null) "-${shortRev}";
-
-in stdenv.mkDerivation rec {
+let
+  v = version + lib.optionalString (shortRev != null) "-${shortRev}";
+in
+stdenv.mkDerivation rec {
   pname = "fenneldoc";
   version = v;
   inherit src;
@@ -14,11 +22,13 @@ in stdenv.mkDerivation rec {
     sed -i Makefile -e 's|\./fenneldoc|lua fenneldoc|'
   '';
 
-  makeFlags = [ "VERSION=${v}" "PREFIX=$(out)" ];
+  makeFlags = [
+    "VERSION=${v}"
+    "PREFIX=$(out)"
+  ];
 
   meta = with lib; {
-    description =
-      "Tool for automatic documentation generation and validation for the Fennel language.";
+    description = "Tool for automatic documentation generation and validation for the Fennel language.";
     homepage = "https://gitlab.com/andreyorst/fenneldoc";
     license = licenses.mit;
     mainProgram = pname;

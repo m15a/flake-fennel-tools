@@ -1,5 +1,16 @@
-{ mkShell, fennel-luajit, fennel-unstable-luajit, faith, faith-unstable, fnlfmt
-, fnlfmt-unstable, fenneldoc, fennel-ls, fennel-ls-unstable, jq }:
+{
+  mkShell,
+  fennel-luajit,
+  fennel-unstable-luajit,
+  faith,
+  faith-unstable,
+  fnlfmt,
+  fnlfmt-unstable,
+  fenneldoc,
+  fennel-ls,
+  fennel-ls-unstable,
+  jq,
+}:
 
 let
   fennel-unstable-luajit' = fennel-unstable-luajit.overrideAttrs (_: {
@@ -19,10 +30,15 @@ let
       mv $out/bin/fnlfmt $out/bin/fnlfmt-unstable
     '';
   });
-
-in mkShell {
-  packages =
-    [ fennel-luajit fennel-unstable-luajit' fnlfmt fnlfmt-unstable' jq ];
+in
+mkShell {
+  packages = [
+    fennel-luajit
+    fennel-unstable-luajit'
+    fnlfmt
+    fnlfmt-unstable'
+    jq
+  ];
   FENNEL_PATH = "${faith}/bin/?;${faith-unstable'}/bin/?";
   FENNELDOC_PATH = "${fenneldoc}/bin/fenneldoc";
   FENNEL_LS_CHANGELOG_PATH = "${fennel-ls.src}/changelog.md";

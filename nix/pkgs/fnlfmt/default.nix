@@ -8,10 +8,8 @@
 }:
 
 let
-  inherit (lib) optionalString strings;
-
-  v' = strings.escapeRegex version;
-  v = version + optionalString (shortRev != null) "-${shortRev}";
+  v' = lib.strings.escapeRegex version;
+  v = version + lib.optionalString (shortRev != null) "-${shortRev}";
 in
 stdenv.mkDerivation rec {
   pname = "fnlfmt";
@@ -22,7 +20,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ lua ];
 
   postPatch =
-    optionalString (shortRev != null) ''
+    lib.optionalString (shortRev != null) ''
       # Append short commit hash to version string.
       sed -E -i fnlfmt.fnl \
           -e 's|(\{: fnlfmt : format-file :version :)(${v'})(\})|\1${v}\3|'

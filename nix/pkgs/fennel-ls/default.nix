@@ -8,17 +8,15 @@
 }:
 
 let
-  inherit (lib) optionalString;
-
   # v' = lib.strings.escapeRegex version;
-  v = version + optionalString (shortRev != null) "-${shortRev}";
+  v = version + lib.optionalString (shortRev != null) "-${shortRev}";
 in
 stdenv.mkDerivation rec {
   pname = "fennel-ls";
   version = v;
   inherit src;
 
-  postPatch = optionalString (shortRev != null) ''
+  postPatch = lib.optionalString (shortRev != null) ''
     # Append short commit hash to version string.
     sed -E -i src/fennel-ls/handlers.fnl \
         -e 's|(\{:name "fennel-ls" :version ")([^"]+)("\})|\1${v}\3|'

@@ -7,17 +7,15 @@
 }:
 
 let
-  inherit (lib) optionalString strings;
-
-  v' = strings.escapeRegex version;
-  v = version + optionalString (shortRev != null) "-${shortRev}";
+  v' = lib.strings.escapeRegex version;
+  v = version + lib.optionalString (shortRev != null) "-${shortRev}";
 in
 stdenv.mkDerivation rec {
   pname = "faith";
   version = v;
   inherit src;
 
-  postPatch = optionalString (shortRev != null) ''
+  postPatch = lib.optionalString (shortRev != null) ''
     # Append short commit hash to version string if any.
     sed -E -i faith.fnl \
         -e 's|(\{: run : skip :version ")(${v'})(")|\1${v}\3|'

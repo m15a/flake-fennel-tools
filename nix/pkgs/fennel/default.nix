@@ -10,15 +10,8 @@
 }:
 
 let
-  inherit (lib)
-    optionals
-    optionalString
-    strings
-    versionOlder
-    ;
-
-  v' = strings.escapeRegex version;
-  v = version + optionalString (shortRev != null) "-${shortRev}";
+  v' = lib.strings.escapeRegex version;
+  v = version + lib.optionalString (shortRev != null) "-${shortRev}";
 
   out = stdenv.mkDerivation rec {
     pname = "fennel";
@@ -29,7 +22,7 @@ let
 
     patches = [ ./patches/man-inst.patch ];
 
-    postPatch = optionalString (shortRev != null) ''
+    postPatch = lib.optionalString (shortRev != null) ''
       # Append short commit hash to version string.
       sed -E -i src/fennel/utils.fnl \
           -e 's|(local version :)(${v'})(\))|\1${v}\3|'
@@ -60,7 +53,7 @@ let
 
     patches =
       out.patches
-      ++ optionals (versionOlder version "1.4.2") [
+      ++ lib.optionals (lib.versionOlder version "1.4.2") [
         (fetchpatch {
           name = "fix Makefile manpage installation";
           url = "https://git.sr.ht/~technomancy/fennel/commit/f0e341239b0bdbbc1aa5f2b715a3389e2ab07646.patch";

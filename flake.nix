@@ -61,7 +61,10 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ fennel-tools ];
+          overlays = [
+            self.overlays.default
+            (import ./nix/ci.nix)
+          ];
         };
       in
       rec {
@@ -108,10 +111,7 @@
         checks = packages;
 
         devShells = rec {
-          ci-check-format = pkgs.callPackage ./nix/pkgs/ci/check-format.nix {
-            nixfmt = pkgs.nixfmt-rfc-style;
-          };
-          ci-check-versions = pkgs.callPackage ./nix/pkgs/ci/check-versions.nix { };
+          inherit (pkgs) ci-check-format ci-check-versions;
           default = ci-check-format;
         };
       }

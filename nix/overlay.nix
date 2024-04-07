@@ -16,14 +16,9 @@ let
     "lua5_4"
   ];
 
-  inherit (prev.lib)
-    strings
-    readFile
-    optionalAttrs
-    cartesianProductOfSets
-    ;
+  inherit (prev) lib;
 
-  packageVersions = strings.fromJSON (readFile ./pkgs/versions.json);
+  packageVersions = lib.strings.fromJSON (lib.readFile ./pkgs/versions.json);
 
   buildFennel =
     { fennelVariant, luaVariant }:
@@ -39,7 +34,7 @@ let
           src = inputs."fennel-${fennelVariant}";
           lua = final.${luaVariant};
         }
-        // optionalAttrs (fennelVariant != "stable") {
+        // lib.optionalAttrs (fennelVariant != "stable") {
           inherit (inputs."fennel-${fennelVariant}") shortRev;
         }
       );
@@ -49,7 +44,7 @@ let
 in
 buildPackageSet {
   builder = buildFennel;
-  args = cartesianProductOfSets {
+  args = lib.cartesianProductOfSets {
     fennelVariant = fennelVariants;
     luaVariant = luaVariants;
   };

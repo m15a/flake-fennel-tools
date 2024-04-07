@@ -116,6 +116,13 @@ pkgs."fennel-unstable-${LUA}".man
 where `${LUA}` is either one of `lua5_1`, `lua5_2`, `lua5_3`, `lua5_4`,
 and `luajit`. 
 
+If you want to derive Fennel with additional Lua packages, you can do
+like so:
+
+```nix
+pkgs.fennel-luajit.withLuaPackages (ps: with ps; [ cjson ])
+```
+
 ### Faith
 
 A testing library. Attributes:

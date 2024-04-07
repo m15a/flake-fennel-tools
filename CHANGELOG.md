@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning][2].
 
 ## [Unreleased]
 
+### Added
+
+- fennel: `withLuaPackages` passthru attribute [#15]:
+  it now supports an expression such as
+  `pkgs.fennel-luajit.withLuaPackages (ps: with ps; [ cjson ])`.
+
+[#15]: https://github.com/m15a/flake-fennel-tools/issues/15
+
 ## [0.4.0] (2024-04-03)
 
 ### Improved

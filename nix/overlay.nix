@@ -28,16 +28,26 @@ let
           "fennel-${luaVariant}"
         else
           "fennel-${fennelVariant}-${luaVariant}";
-      value = final.callPackage ./pkgs/fennel (
-        {
-          version = packageVersions."fennel-${fennelVariant}";
-          src = inputs."fennel-${fennelVariant}";
+      value =
+        let
           lua = final.${luaVariant};
-        }
-        // lib.optionalAttrs (fennelVariant != "stable") {
-          inherit (inputs."fennel-${fennelVariant}") shortRev;
-        }
-      );
+          fennel = final.callPackage ./pkgs/fennel (
+            {
+              version = packageVersions."fennel-${fennelVariant}";
+              src = inputs."fennel-${fennelVariant}";
+              inherit lua;
+            }
+            // lib.optionalAttrs (fennelVariant != "stable") {
+              inherit (inputs."fennel-${fennelVariant}") shortRev;
+            }
+          );
+          withLuaPackages = pkgs: fennel.override { lua = lua.withPackages pkgs; };
+        in
+        fennel.overrideAttrs (old: {
+          passthru = old.passthru // {
+            inherit withLuaPackages;
+          };
+        });
     };
 
   buildPackageSet = { builder, args }: builtins.listToAttrs (map builder args);

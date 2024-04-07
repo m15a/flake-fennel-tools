@@ -22,8 +22,8 @@ jobs:
 
       - name: Check format
         run: |
-          nix develop .#ci-check-format --command bash -c "pre-commit run --all-files"
+          nix develop .#ci-check-format -c bash -c 'pre-commit run --all-files'
 
       - name: Check versions
         run: |
-          nix develop .#ci-check-versions --command bash -c "./tools/check-versions.fnl"
+          nix develop .#ci-check-versions -c bash -c './tools/check-versions.fnl'

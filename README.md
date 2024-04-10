@@ -80,6 +80,12 @@ look like:
 }
 ```
 
+Alternatively, you can use this flake via [FlakeHub].
+See instructions at the [FlakeHub page].
+
+[FlakeHub]: https://flakehub.com/
+[FlakeHub page]: https://flakehub.com/flake/m15a/flake-fennel-tools
+
 ### Run applications on the fly
 
 Executable programs contained in the packages are accessible via

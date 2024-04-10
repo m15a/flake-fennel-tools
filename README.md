@@ -5,8 +5,8 @@ Nix flake of Fennel development tools.
 [![CI][b1]][b2]
 [![FlakeHub][b3]][b4]
 
-[b1]: https://img.shields.io/github/actions/workflow/status/m15a/flake-fennel-tools/ci.yml?style=flat-square&logo=github&label=CI
-[b2]: https://github.com/m15a/flake-fennel-tools/actions/workflows/ci.yml
+[b1]: https://img.shields.io/github/actions/workflow/status/m15a/flake-fennel-tools/check.yml?style=flat-square&logo=github&label=CI
+[b2]: https://github.com/m15a/flake-fennel-tools/actions/workflows/check.yml
 [b3]: https://img.shields.io/endpoint?url=https://flakehub.com/f/m15a/flake-fennel-tools/badge&style=flat-square
 [b4]: https://flakehub.com/flake/m15a/flake-fennel-tools
 

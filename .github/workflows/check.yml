@@ -1,4 +1,4 @@
-name: CI
+name: Check
 
 on:
   push:
@@ -26,4 +26,4 @@ jobs:
 
       - name: Check versions
         run: |
-          nix develop .#ci-check-versions -c bash -c './tools/check-versions.fnl'
+          nix develop .#ci-check-versions -c bash -c ./tools/check-versions.fnl

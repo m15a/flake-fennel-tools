@@ -1,27 +1,30 @@
 {
   mkShell,
-  fennel,
-  fennel-unstable,
-  faith,
+  stdenv,
+  fennel-unstable-luajit,
   faith-unstable,
-  fnlfmt,
   fnlfmt-unstable,
-  fenneldoc,
-  fennel-ls,
   fennel-ls-unstable,
   jq,
 }:
 
+let
+  fennel-ls-unstable-changelog = stdenv.mkDerivation {
+    name = fennel-ls-unstable.name + "-changelog";
+    inherit (fennel-ls-unstable) src;
+    dontConfigure = true;
+    dontBuild = true;
+    installPhase = "cp changelog.md $out";
+    dontFixup = true;
+  };
+in
+
 mkShell {
   packages = [
-    fennel
-    fennel-unstable
-    fnlfmt
+    fennel-unstable-luajit
     fnlfmt-unstable
     jq.bin
   ];
-  FENNEL_PATH = "${faith}/bin/?;${faith-unstable}/bin/?";
-  FENNELDOC_PATH = "${fenneldoc}/bin/fenneldoc";
-  FENNEL_LS_CHANGELOG_PATH = "${fennel-ls.src}/changelog.md";
-  FENNEL_LS_UNSTABLE_CHANGELOG_PATH = "${fennel-ls-unstable.src}/changelog.md";
+  FENNEL_PATH = "${faith-unstable}/bin/?";
+  FENNEL_LS_UNSTABLE_CHANGELOG_PATH = fennel-ls-unstable-changelog;
 }

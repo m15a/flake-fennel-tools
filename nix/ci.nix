@@ -10,22 +10,18 @@ final: prev:
     ];
   };
 
-  ci-check-versions = final.callPackage ./pkgs/ci/check-versions.nix {
-    fennel = final.fennel-luajit;
-    fennel-unstable = final.fennel-unstable-luajit.overrideAttrs (_: {
-      postInstall = ''
-        mv $out/bin/fennel $out/bin/fennel-unstable
-      '';
-    });
-    faith-unstable = final.faith-unstable.overrideAttrs (_: {
-      postInstall = ''
-        mv $out/bin/faith $out/bin/faith-unstable
-      '';
-    });
-    fnlfmt-unstable = final.fnlfmt-unstable.overrideAttrs (_: {
-      postInstall = ''
-        mv $out/bin/fnlfmt $out/bin/fnlfmt-unstable
-      '';
-    });
+  ci-check-versions = final.callPackage ./pkgs/ci/check-versions.nix { };
+
+  ci-update = final.mkShell {
+    packages = [
+      final.nix
+      final.jq.bin
+      (final.fennel-luajit.withLuaPackages (
+        ps: with ps; [
+          http
+          cjson
+        ]
+      ))
+    ];
   };
 }

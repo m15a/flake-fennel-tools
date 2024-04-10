@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2024-04-06",
+    "description": "The Fennel programming language",
+    "owner": "~technomancy",
+    "repo": "fennel",
+    "rev": "d3713f64810b64618550ddc5042b659f9ee39926",
+    "sha256": "0z6zkgjxa02xbpd0lzvbiclgcx8bwccib2cabxr4llkybzaj32a1",
+    "site": "git.sr.ht",
+    "url": "https://git.sr.ht/~technomancy/fennel/archive/d3713f64810b64618550ddc5042b659f9ee39926.tar.gz"
+  },
+  {
+    "date": "2024-03-09",
+    "description": "A formatter for Fennel code",
+    "owner": "~technomancy",
+    "repo": "fnlfmt",
+    "rev": "e8c85022eba765e918e77d8de86506a33a8d21d1",
+    "sha256": "0g4gixzrirjbxvs81nqhbx4ca2mn877qzkl8v2p674v2z5ir79lh",
+    "site": "git.sr.ht",
+    "url": "https://git.sr.ht/~technomancy/fnlfmt/archive/e8c85022eba765e918e77d8de86506a33a8d21d1.tar.gz"
+  },
+  {
+    "date": "2024-03-11",
+    "description": "a test library for Fennel",
+    "owner": "~technomancy",
+    "repo": "faith",
+    "rev": "1e54414b7b27788226a39c9f8b1fc5f16b316645",
+    "sha256": "0xb033y1bim82a0g734086f1fv7504l7llhf5xqsxxbnrfmaj57a",
+    "site": "git.sr.ht",
+    "url": "https://git.sr.ht/~technomancy/faith/archive/1e54414b7b27788226a39c9f8b1fc5f16b316645.tar.gz"
+  },
+  {
+    "date": "2024-04-08",
+    "description": "Language Server for Fennel",
+    "owner": "~xerool",
+    "repo": "fennel-ls",
+    "rev": "311ce2645e1a2b0fce278968a96e4ae4c98b7daa",
+    "sha256": "1b00k9fqp7k5p1bjdfjm7x5ksmdrsc9j6b3yrddg5w3cwpww3wl1",
+    "site": "git.sr.ht",
+    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/311ce2645e1a2b0fce278968a96e4ae4c98b7daa.tar.gz"
+  }
+]

@@ -10,6 +10,14 @@ and this project adheres to [Semantic Versioning][2].
 
 ## [Unreleased]
 
+## [0.6.0] (2024-04-10)
+
+### Changed
+
+- Move to [FlakeHub] rolling release.
+
+[FlakeHub]: https://flakehub.com/flake/m15a/flake-fennel-tools
+
 ## [0.5.0] (2024-04-07)
 
 ### Added
@@ -75,6 +83,7 @@ and this project adheres to [Semantic Versioning][2].
   - Fenneldoc: version `1.0.1-dev`
 
 [Unreleased]: https://github.com/m15a/flake-fennel-tools/tree/HEAD
+[0.6.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.6.0
 [0.5.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.5.0
 [0.4.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.4.0
 [0.3.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.3.0

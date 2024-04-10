@@ -16,5 +16,5 @@ jobs:
         with:
           name: m15a/flake-fennel-tools
           rolling: true
-          rolling-minor: 5
+          rolling-minor: 6
           visibility: public

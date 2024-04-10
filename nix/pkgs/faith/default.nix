@@ -1,21 +1,28 @@
 {
-  version,
-  shortRev ? null,
-  src,
+  shortRev ? false,
+  pkgInfo,
   stdenv,
   lib,
+  fetchurl,
 }:
 
 let
+  inherit (pkgInfo)
+    version
+    rev
+    url
+    sha256
+    ;
+
   v' = lib.strings.escapeRegex version;
-  v = version + lib.optionalString (shortRev != null) "-${shortRev}";
+  v = version + lib.optionalString shortRev "-${lib.strings.substring 0 7 rev}";
 in
 stdenv.mkDerivation rec {
   pname = "faith";
   version = v;
-  inherit src;
+  src = fetchurl { inherit url sha256; };
 
-  postPatch = lib.optionalString (shortRev != null) ''
+  postPatch = lib.optionalString shortRev ''
     # Append short commit hash to version string if any.
     sed -E -i faith.fnl \
         -e 's|(\{: run : skip :version ")(${v'})(")|\1${v}\3|'
@@ -42,7 +49,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with lib; {
-    description = "The Fennel Advanced Interactive Test Helper.";
+    description = "A test library for Fennel";
     homepage = "https://git.sr.ht/~technomancy/faith";
     license = licenses.mit;
     mainProgram = pname;

@@ -4,42 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    fennel-stable = {
-      url = "sourcehut:~technomancy/fennel/1.4.2";
-      flake = false;
-    };
-    fennel-unstable = {
-      url = "sourcehut:~technomancy/fennel/main";
-      flake = false;
-    };
-    fenneldoc = {
-      url = "gitlab:andreyorst/fenneldoc/master";
-      flake = false;
-    };
-    fnlfmt-stable = {
-      url = "sourcehut:~technomancy/fnlfmt/0.3.1";
-      flake = false;
-    };
-    fnlfmt-unstable = {
-      url = "sourcehut:~technomancy/fnlfmt/main";
-      flake = false;
-    };
-    faith-stable = {
-      url = "sourcehut:~technomancy/faith/0.1.2";
-      flake = false;
-    };
-    faith-unstable = {
-      url = "sourcehut:~technomancy/faith/main";
-      flake = false;
-    };
-    fennel-ls-stable = {
-      url = "sourcehut:~xerool/fennel-ls/0.1.1";
-      flake = false;
-    };
-    fennel-ls-unstable = {
-      url = "sourcehut:~xerool/fennel-ls/main";
-      flake = false;
-    };
   };
 
   outputs =
@@ -48,9 +12,9 @@
       nixpkgs,
       flake-utils,
       ...
-    }@inputs:
+    }:
     let
-      fennel-tools = import ./nix/overlay.nix { inherit inputs; };
+      fennel-tools = import ./nix/overlay.nix;
     in
     {
       overlays = rec {
@@ -113,8 +77,14 @@
         checks = packages;
 
         devShells = rec {
-          inherit (pkgs) ci-check-format ci-check-versions;
-          default = ci-check-format;
+          inherit (pkgs) ci-check-format ci-check-versions ci-update;
+          default = pkgs.mkShell {
+            inputsFrom = [
+              ci-check-format
+              ci-update
+            ];
+            packages = [ pkgs.fennel-ls-unstable ];
+          };
         };
       }
     );

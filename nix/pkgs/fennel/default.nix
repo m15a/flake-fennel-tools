@@ -1,28 +1,35 @@
 {
-  version,
-  shortRev ? null,
-  src,
-  lua,
+  shortRev ? false,
+  pkgInfo,
   stdenv,
   lib,
+  fetchurl,
   fetchpatch,
+  lua,
   pandoc,
 }:
 
 let
+  inherit (pkgInfo)
+    version
+    rev
+    url
+    sha256
+    ;
+
   v' = lib.strings.escapeRegex version;
-  v = version + lib.optionalString (shortRev != null) "-${shortRev}";
+  v = version + lib.optionalString shortRev "-${lib.strings.substring 0 7 rev}";
 
   out = stdenv.mkDerivation rec {
     pname = "fennel";
     version = v;
-    inherit src;
+    src = fetchurl { inherit url sha256; };
 
     buildInputs = [ lua ];
 
     patches = [ ./patches/man-inst.patch ];
 
-    postPatch = lib.optionalString (shortRev != null) ''
+    postPatch = lib.optionalString shortRev ''
       # Append short commit hash to version string.
       sed -E -i src/fennel/utils.fnl \
           -e 's|(local version :)(${v'})(\))|\1${v}\3|'
@@ -35,7 +42,7 @@ let
     };
 
     meta = with lib; {
-      description = "Lua Lisp Language";
+      description = "The Fennel programming language";
       homepage = "https://fennel-lang.org/";
       license = licenses.mit;
       mainProgram = pname;

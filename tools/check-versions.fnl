@@ -8,7 +8,8 @@
        (pick-values 1)))
 
 (fn command-to-get-expected-version [pkg-name]
-  (.. "jq -r '.[\"" pkg-name "\"]' nix/pkgs/versions.json 2>/dev/null"))
+  (let [pkg-name (pkg-name:match "(.*)%-unstable")]
+    (.. "jq -r '.[\"" pkg-name "\"]' data/unstable-versions.json 2>/dev/null")))
 
 (fn check-version [pkg-name command-to-get-actual-version]
   "Check version consistency for the package."
@@ -49,35 +50,16 @@
 
 (do-checks
   (check-version
-    :fennel-stable
+    :fennel-unstable
     (| "fennel --version 2>/dev/null"
        "cut -d' ' -f2"))
   (check-version
-    :fennel-unstable
-    (| "fennel-unstable --version 2>/dev/null"
-       "cut -d' ' -f2"))
-  (check-version
-    :faith-stable
+    :faith-unstable
     "fennel --eval \"(print (. (require :faith) :version))\" 2>/dev/null")
   (check-version
-    :faith-unstable
-    "fennel --eval \"(print (. (require :faith-unstable) :version))\" 2>/dev/null")
-  (check-version
-    :fnlfmt-stable
+    :fnlfmt-unstable
     (| "fnlfmt --version 2>/dev/null"
        "cut -d' ' -f3"))
-  (check-version
-    :fnlfmt-unstable
-    (| "fnlfmt-unstable --version 2>/dev/null"
-       "cut -d' ' -f3"))
-  (check-version
-    :fenneldoc
-    (| "grep -m1 'FENNELDOC_VERSION =' $FENNELDOC_PATH 2>/dev/null"
-       "cut -d' ' -f3"
-       "sed -E 's|\\[\\[([^]]+)]]|\\1|'"))
-  (check-version
-    :fennel-ls-stable
-    (command-to-get-fennel-ls-version "$FENNEL_LS_CHANGELOG_PATH"))
   (check-version
     :fennel-ls-unstable
     (command-to-get-fennel-ls-version "$FENNEL_LS_UNSTABLE_CHANGELOG_PATH"

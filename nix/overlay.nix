@@ -1,5 +1,3 @@
-{ inputs }:
-
 final: prev:
 
 let
@@ -17,8 +15,24 @@ let
   ];
 
   inherit (prev) lib;
+  inherit (lib.strings) fromJSON;
 
-  packageVersions = lib.strings.fromJSON (lib.readFile ./pkgs/versions.json);
+  stablePkgsInfo = import ./stable-packages.nix;
+
+  unstablePkgsInfo =
+    let
+      unstablePkgsVersions = fromJSON (lib.readFile ../data/unstable-versions.json);
+
+      repoToAttrset = x: {
+        name = x.repo;
+        value = x // {
+          version = unstablePkgsVersions.${x.repo};
+        };
+      };
+
+      data = fromJSON (lib.readFile ../data/unstable-packages.json);
+    in
+    builtins.listToAttrs (map repoToAttrset data);
 
   buildFennel =
     { fennelVariant, luaVariant }:
@@ -33,13 +47,14 @@ let
           lua = final.${luaVariant};
           fennel = final.callPackage ./pkgs/fennel (
             {
-              version = packageVersions."fennel-${fennelVariant}";
-              src = inputs."fennel-${fennelVariant}";
+              pkgInfo =
+                if fennelVariant == "stable" then
+                  stablePkgsInfo.fennel
+                else
+                  unstablePkgsInfo.fennel;
               inherit lua;
             }
-            // lib.optionalAttrs (fennelVariant != "stable") {
-              inherit (inputs."fennel-${fennelVariant}") shortRev;
-            }
+            // lib.optionalAttrs (fennelVariant != "stable") { shortRev = true; }
           );
           withLuaPackages = pkgs: fennel.override { lua = lua.withPackages pkgs; };
         in
@@ -60,44 +75,31 @@ buildPackageSet {
   };
 }
 // {
-  faith = final.callPackage ./pkgs/faith {
-    version = packageVersions.faith-stable;
-    src = inputs.faith-stable;
-  };
+  faith = final.callPackage ./pkgs/faith { pkgInfo = stablePkgsInfo.faith; };
   faith-unstable = final.callPackage ./pkgs/faith {
-    version = packageVersions.faith-unstable;
-    inherit (inputs.faith-unstable) shortRev;
-    src = inputs.faith-unstable;
+    shortRev = true;
+    pkgInfo = unstablePkgsInfo.faith;
   };
 
   fnlfmt = final.callPackage ./pkgs/fnlfmt {
-    version = packageVersions.fnlfmt-stable;
-    src = inputs.fnlfmt-stable;
+    pkgInfo = stablePkgsInfo.fnlfmt;
     lua = final.luajit;
   };
   fnlfmt-unstable = final.callPackage ./pkgs/fnlfmt {
-    version = packageVersions.fnlfmt-unstable;
-    inherit (inputs.fnlfmt-unstable) shortRev;
-    src = inputs.fnlfmt-unstable;
+    shortRev = true;
+    pkgInfo = unstablePkgsInfo.fnlfmt;
     lua = final.luajit;
   };
 
-  fenneldoc = final.callPackage ./pkgs/fenneldoc {
-    version = packageVersions.fenneldoc;
-    inherit (inputs.fenneldoc) shortRev;
-    src = inputs.fenneldoc;
-    lua = final.lua5_4;
-  };
+  fenneldoc = final.callPackage ./pkgs/fenneldoc { lua = final.lua5_4; };
 
   fennel-ls = final.callPackage ./pkgs/fennel-ls {
-    version = packageVersions.fennel-ls-stable;
-    src = inputs.fennel-ls-stable;
+    pkgInfo = stablePkgsInfo.fennel-ls;
     lua = final.lua5_4;
   };
   fennel-ls-unstable = final.callPackage ./pkgs/fennel-ls {
-    version = packageVersions.fennel-ls-unstable;
-    inherit (inputs.fennel-ls-unstable) shortRev;
-    src = inputs.fennel-ls-unstable;
+    shortRev = true;
+    pkgInfo = unstablePkgsInfo.fennel-ls;
     lua = final.lua5_4;
   };
 }

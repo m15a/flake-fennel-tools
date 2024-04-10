@@ -1,19 +1,21 @@
 {
-  version,
-  shortRev ? null,
-  src,
-  lua,
   stdenv,
   lib,
+  fetchurl,
+  lua,
 }:
 
 let
-  v = version + lib.optionalString (shortRev != null) "-${shortRev}";
+  version = "1.0.1-dev-" + lib.strings.substring 0 7 rev;
+  rev = "7960056a31db6c28d0c2f3eb76e6bf88a90e436e";
 in
 stdenv.mkDerivation rec {
   pname = "fenneldoc";
-  version = v;
-  inherit src;
+  inherit version;
+  src = fetchurl {
+    url = "https://gitlab.com/andreyorst/fenneldoc/-/archive/${rev}.tar.gz";
+    hash = "sha256-16OMCwJB9XA3DigbOZEnO8ZJ4O7W+JqIiZryIAd+cV0=";
+  };
 
   nativeBuildInputs = [ lua.pkgs.fennel ];
   buildInputs = [ lua ];
@@ -23,7 +25,7 @@ stdenv.mkDerivation rec {
   '';
 
   makeFlags = [
-    "VERSION=${v}"
+    "VERSION=${version}"
     "PREFIX=$(out)"
   ];
 

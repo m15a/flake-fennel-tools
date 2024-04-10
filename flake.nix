@@ -1,4 +1,6 @@
 {
+  description = "Nix flake of Fennel development tools";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";

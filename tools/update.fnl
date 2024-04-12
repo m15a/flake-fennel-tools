@@ -203,12 +203,40 @@
           (values nil "failed to run nix-prefetch-url")))))
 
 ;;; ==========================================================================
+;;; Cache REST API query results
+;;; ==========================================================================
+
+(var use-cache? false)
+
+(macro with-cache [path & body]
+  "If the cache is younger than 23 hours, use it; otherwise regenerate data."
+  (let [too-old? `(fn [age#] (< age# (- (os.time) (* 23 60 60))))]
+    `(if use-cache?
+         (let [cache# (json.file->object ,path)]
+           (if (and cache# (not (,too-old? cache#.time)))
+               cache#
+               (let [out# (do ,(unpack body))]
+                 (case (json.object->file out# ,path)
+                   true out#
+                   (_# msg#) (error msg#)))))
+         (do ,(unpack body)))))
+
+;;; ==========================================================================
 ;;; GitHub, GitLab, etc. meta table
 ;;; ==========================================================================
 
 (local hub {:site "missing.hub"
             :token {:env-var "MISSING_TOKEN"}
-            :get-uri-base "api.missing-hub.com/"})
+            :get-uri-base "api.missing-hub.com/"
+            :current-packages-info {}})
+
+(fn hub.init-current-packages-info! [path]
+  (case (json.file->object path)
+    packages-info (each [_ plugin-info (ipairs packages-info)]
+                   (let [{: site : owner : repo} plugin-info
+                         key (.. site :/ owner :/ repo)]
+                     (tset hub.current-packages-info key plugin-info)))
+    _ (log.error/exit "failed to load current plugins info")))
 
 (fn hub.get-token [self]
   (if self.token.missing?
@@ -246,35 +274,33 @@
   (.. "data/cache/site=" self.site "/owner=" owner "/repo=" repo "/refs/"
       (if ?ref (.. ?ref ".json") "default.json")))
 
-(fn hub.query-repo-info [self {: owner : repo}]
-  (assert/method self :repo-info-uri-path)
-  (assert/method self :preprocess/repo-info)
-  (case (self:get (self.repo-info-uri-path owner repo))
-    info (let [info (self.preprocess/repo-info info)
-               cache-path (self:repo-info-cache-path owner repo)]
-           (set info.time (os.time))
-           (case (json.object->file info cache-path)
-             true info
-             (_ msg) (error msg)))
-    (_ msg) (log.error/nil msg)))
-
-(fn too-old? [time ?hours]
-  (assert/optional-type :number ?hours)
-  (case (type time)
-    :number (let [hours (or ?hours 23)]
-              (< time (- (os.time) (* hours 60 60))))
-    _ true))
-
 (fn hub.get-repo-info [self {: owner : repo}]
   (assert/type :string owner)
   (assert/type :string repo)
-  (let [cache-path (self:repo-info-cache-path owner repo)
-        cache (json.file->object cache-path)]
-    (if (and cache (not (too-old? cache.time (- (* 7 24) 1))))
-        cache
-        (do
-          (log "query " self.site " repo: " owner "/" repo)
-          (self:query-repo-info {: owner : repo})))))
+  (assert/method self :repo-info-uri-path)
+  (assert/method self :preprocess/repo-info)
+  (with-cache (self:repo-info-cache-path owner repo)
+    (log "query " self.site " repo: " owner "/" repo)
+    (case (self:get (self.repo-info-uri-path owner repo))
+      info (doto (self.preprocess/repo-info info)
+             (tset :time (os.time)))
+      (_ msg) (log.error/nil msg))))
+
+(fn hub.get-tarball-info [self {: owner : repo : rev}]
+  (assert/method self :tarball-uri)
+  (let [url (self.tarball-uri owner repo rev)]
+    (log "update sha256 hash: " url)
+    (case (nix.prefetch-url url)
+      sha256 {: url : sha256}
+      (_ msg) (log.error/nil (.. "failed to get tarball hash: " msg)))))
+
+(fn hub.current-commit-info [self {: owner : repo}]
+  (assert/type :string owner)
+  (assert/type :string repo)
+  (let [key (.. self.site :/ owner :/ repo)
+        {: timestamp : date : rev : url : sha256}
+        (. hub.current-packages-info key)]
+    {: timestamp : date : rev : url : sha256}))
 
 (fn hub.get-latest-commit-info [self {: owner : repo : ref}]
   (assert/type :string owner)
@@ -282,35 +308,23 @@
   (assert/optional-type :string ref)
   (assert/method self :latest-commit-info-uri-path)
   (assert/method self :preprocess/latest-commit-info)
-  (assert/method self :tarball-uri)
-  (let [cache-path (self:latest-commit-info-cache-path owner repo ref)
-        cache (json.file->object cache-path)]
-    (if (and cache (not (too-old? cache.time)))
-        cache
-        (do
-          (log "query " self.site " latest commit: " owner "/" repo
-               (unpack (if ref ["/" ref] [])))
-          (case (self:get (self.latest-commit-info-uri-path owner repo ref))
-            info (let [info (self.preprocess/latest-commit-info info)]
-                   (if (and cache (= cache.rev info.rev))
-                       (let [cache (doto cache
-                                     (tset :time (os.time)))]
-                         (case (json.object->file cache cache-path)
-                           true cache
-                           (_ msg) (error msg)))
-                       (let [url (self.tarball-uri owner repo info.rev)]
-                         (log "update sha256 hash: " owner "/" repo
-                              (unpack (if ref ["/" ref] [])))
-                         (case (nix.prefetch-url url) 
-                           sha256 (let [info (doto info
-                                               (tset :url url)
-                                               (tset :sha256 sha256)
-                                               (tset :time (os.time)))]
-                                    (case (json.object->file info cache-path)
-                                      true info
-                                      (_ msg) (error msg)))
-                           (_ msg) (log.error/nil msg)))))
-            (_ msg) (log.error/nil msg))))))
+  (with-cache (self:latest-commit-info-cache-path owner repo ref)
+    (log "query " self.site " latest commit: " owner "/" repo
+         (unpack (if ref ["/" ref] [])))
+    (let [current (self:current-commit-info {: owner : repo})]
+      (case (self:get (self.latest-commit-info-uri-path owner repo ref))
+        latest (let [latest (self.preprocess/latest-commit-info latest)]
+                 (if (= current.rev latest.rev)
+                     (doto current
+                       (tset :time (os.time)))
+                     (case (self:get-tarball-info {: owner : repo
+                                                   :rev latest.rev})
+                       {: url : sha256} (doto latest
+                                          (tset :time (os.time))
+                                          (tset :url url)
+                                          (tset :sha256 sha256))
+                       _ current)))
+        (_ msg) (log.error/nil msg)))))
 
 (fn timestamp->date [timestamp]
   (assert/type :string timestamp)
@@ -328,7 +342,8 @@
       (tset :default_branch nil)
       (tset :time nil)
       (tset :timestamp nil)
-      (tset :date (timestamp->date latest-commit-info.timestamp)))
+      (tset :date (or latest-commit-info.date
+                      (timestamp->date latest-commit-info.timestamp))))
     (catch _ nil)))
 
 ;;; ==========================================================================
@@ -443,6 +458,13 @@
 ;;; Main
 ;;; ==========================================================================
 
+(when (= :--use-cache ...)
+  (set use-cache? true))
+
+(local packages-info-path "data/unstable-packages.json")
+
+(hub.init-current-packages-info! packages-info-path)
+
 (case (json.file->object "data/unstable-packages.json")
   packages (-> (icollect [_ package (stablepairs packages)]
                  (doto package
@@ -456,7 +478,7 @@
                              :codeberg.org
                              (codeberg:get-all-info package)
                              _ {}))))
-               (json.object->file/exit "data/unstable-packages.json"))
-  _ (log.error/exit "failed to import data/unstable-packages.json"))
+               (json.object->file/exit packages-info-path))
+  _ (log.error/exit "failed to import " packages-info-path))
 
 ;; vim: lw+=unless

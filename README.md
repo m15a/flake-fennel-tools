@@ -25,14 +25,6 @@ Moreover, it provides Fennel development version (i.e., `main` branch),
 which is updated once every day. It would help you test your Fennel
 application/library against the cutting edge.
 
-[1]: https://fennel-lang.org/
-[2]: https://git.sr.ht/~technomancy/faith
-[3]: https://git.sr.ht/~technomancy/fnlfmt
-[4]: https://gitlab.com/andreyorst/fenneldoc
-[5]: https://sr.ht/~xerool/fennel-ls/
-[6]: https://wiki.fennel-lang.org/#tools
-[7]: https://github.com/NixOS/nixpkgs
-
 [^1]: `fnlfmt` and `fennel-ls` are available in nixpkgs as of Feb 2024.
 
 ## Usage
@@ -80,11 +72,8 @@ look like:
 }
 ```
 
-Alternatively, you can use this flake via [FlakeHub].
-See instructions at the [FlakeHub page].
-
-[FlakeHub]: https://flakehub.com/
-[FlakeHub page]: https://flakehub.com/flake/m15a/flake-fennel-tools
+Alternatively, you can use this flake via [FlakeHub][8].
+See instructions at the [FlakeHub page][9].
 
 ### Run applications on the fly
 
@@ -219,12 +208,21 @@ Unless otherwise stated, this software is licensed under the
 [BSD 3-clause license](LICENSE).
 
 [`data/unstable-packages.json`](data/unstable-packages.json) is
-collected from code hosting services (currently [sourcehut] only) by
+collected from code hosting services (currently [sourcehut][10] only) by
 using their API. Each part of the data has respective copyright and
 permission to use.
-See [sourcehut terms of service] for more information.
+See [sourcehut terms of service][11] for more information.
 
-[sourcehut]: https://sr.ht/
-[sourcehut terms of service]: https://man.sr.ht/terms.md
+[1]: https://fennel-lang.org/
+[2]: https://git.sr.ht/~technomancy/faith
+[3]: https://git.sr.ht/~technomancy/fnlfmt
+[4]: https://gitlab.com/andreyorst/fenneldoc
+[5]: https://sr.ht/~xerool/fennel-ls/
+[6]: https://wiki.fennel-lang.org/#tools
+[7]: https://github.com/NixOS/nixpkgs
+[8]: https://flakehub.com/
+[9]: https://flakehub.com/flake/m15a/flake-fennel-tools
+[10]: https://sr.ht/
+[11]: https://man.sr.ht/terms.md
 
 <!-- vim:set tw=72 spell nowrap: -->

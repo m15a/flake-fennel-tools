@@ -211,7 +211,8 @@ Unless otherwise stated, this software is licensed under the
 collected from code hosting services (currently [sourcehut][10] only) by
 using their API. Each part of the data has respective copyright and
 permission to use.
-See [sourcehut terms of service][11] for more information.
+See [sourcehut terms of service][11] for more information about the
+permissible data use and content rights.
 
 [1]: https://fennel-lang.org/
 [2]: https://git.sr.ht/~technomancy/faith

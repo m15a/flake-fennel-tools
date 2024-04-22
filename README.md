@@ -213,8 +213,18 @@ inputs.fennel-ls.url = "sourcehut:~xerool/fennel-ls/main";
 
 This flake provides its own `fennel-ls` package just for completeness.
 
-## License
+## Licenses
 
-[BSD 3-clause](LICENSE)
+Unless otherwise stated, this software is licensed under the
+[BSD 3-clause license](LICENSE).
+
+[`data/unstable-packages.json`](data/unstable-packages.json) is
+collected from code hosting services (currently [sourcehut] only) by
+using their API. Each part of the data has respective copyright and
+permission to use.
+See [sourcehut terms of service] for more information.
+
+[sourcehut]: https://sr.ht/
+[sourcehut terms of service]: https://man.sr.ht/terms.md
 
 <!-- vim:set tw=72 spell nowrap: -->

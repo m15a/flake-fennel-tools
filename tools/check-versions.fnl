@@ -8,8 +8,11 @@
        (pick-values 1)))
 
 (fn command-to-get-expected-version [pkg-name]
-  (let [pkg-name (pkg-name:match "(.*)%-unstable")]
-    (.. "jq -r '.[\"" pkg-name "\"]' data/unstable-versions.json 2>/dev/null")))
+  (let [src-path (os.getenv :src)
+        pkg-name (pkg-name:match "(.*)%-unstable")]
+    (.. "jq -r '.[\"" pkg-name "\"]' "
+        (if src-path (.. src-path :/) "")
+        "data/unstable-versions.json 2>/dev/null")))
 
 (fn check-version [pkg-name command-to-get-actual-version]
   "Check version consistency for the package."

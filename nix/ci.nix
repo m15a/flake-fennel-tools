@@ -31,6 +31,29 @@ rec {
           deadnix --fail --no-lambda-arg --no-lambda-pattern-names $src/
           touch $out
         '';
+
+    versions =
+      runCommand "check-versions"
+        {
+          src = ../.;
+          nativeBuildInputs = [
+            fennel-unstable-luajit
+            fnlfmt-unstable
+            jq.bin
+          ];
+          FENNEL_PATH = "${faith-unstable}/bin/?";
+          FENNEL_LS_UNSTABLE_CHANGELOG_PATH =
+            runCommand "fennel-ls-unstable-changelog" { inherit (fennel-ls-unstable) src; }
+              ''
+                tar xf $src --wildcards '*/changelog.md'
+                cp */changelog.md $out
+              '';
+        }
+        ''
+          set -e
+          fennel $src/tools/check-versions.fnl
+          touch $out
+        '';
   };
 
   devShells = rec {
@@ -45,8 +68,6 @@ rec {
         luajit.pkgs.readline
       ];
     };
-
-    ci-check-versions = callPackage ./pkgs/ci/check-versions.nix { };
 
     ci-update = mkShell {
       packages = [

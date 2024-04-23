@@ -14,15 +14,12 @@
       ...
     }:
     let
-      fennel-tools = import ./nix/overlay.nix;
+      inherit (flake-utils.lib) eachDefaultSystem mkApp;
     in
     {
-      overlays = rec {
-        inherit fennel-tools;
-        default = fennel-tools;
-      };
+      overlays.default = import ./nix/overlay.nix;
     }
-    // flake-utils.lib.eachDefaultSystem (
+    // eachDefaultSystem (
       system:
       let
         pkgs = import nixpkgs {
@@ -64,28 +61,17 @@
             ;
         };
 
-        apps =
-          with flake-utils.lib;
-          builtins.mapAttrs (
-            name: pkg:
-            mkApp {
-              drv = pkg;
-              name = pkg.meta.mainProgram or pkg.pname;
-            }
-          ) packages;
+        apps = builtins.mapAttrs (
+          name: pkg:
+          mkApp {
+            drv = pkg;
+            name = pkg.meta.mainProgram or pkg.pname;
+          }
+        ) packages;
 
-        checks = packages;
+        checks = packages // pkgs.checks;
 
-        devShells = rec {
-          inherit (pkgs) ci-check-format ci-check-versions ci-update;
-          default = pkgs.mkShell {
-            inputsFrom = [
-              ci-check-format
-              ci-update
-            ];
-            packages = [ pkgs.fennel-ls-unstable ];
-          };
-        };
+        inherit (pkgs) devShells;
       }
     );
 }

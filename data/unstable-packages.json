@@ -20,14 +20,14 @@
     "url": "https://git.sr.ht/~technomancy/fnlfmt/archive/e8c85022eba765e918e77d8de86506a33a8d21d1.tar.gz"
   },
   {
-    "date": "2024-03-11",
+    "date": "2024-04-22",
     "description": "a test library for Fennel",
     "owner": "~technomancy",
     "repo": "faith",
-    "rev": "1e54414b7b27788226a39c9f8b1fc5f16b316645",
-    "sha256": "0xb033y1bim82a0g734086f1fv7504l7llhf5xqsxxbnrfmaj57a",
+    "rev": "7264d02c12a990373e2931afb6afa14e6dcec980",
+    "sha256": "1hgcwh9yyivkbp77hx6bxdck160fjpn0jp40sjsmbl36vyshaw9i",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~technomancy/faith/archive/1e54414b7b27788226a39c9f8b1fc5f16b316645.tar.gz"
+    "url": "https://git.sr.ht/~technomancy/faith/archive/7264d02c12a990373e2931afb6afa14e6dcec980.tar.gz"
   },
   {
     "date": "2024-04-08",

@@ -1,13 +1,13 @@
 [
   {
-    "date": "2024-05-17",
+    "date": "2024-05-19",
     "description": "The Fennel programming language",
     "owner": "~technomancy",
     "repo": "fennel",
-    "rev": "9813acfa65cd63bca54d333fa757cf2fb6406fa3",
-    "sha256": "1pglnav3xcxznvvw5j609zd1gbv4x6vzs2jf4i5fk1i8fajp76jq",
+    "rev": "5a090a8001892e91dd6196aedcae1fb127b22d40",
+    "sha256": "1q6jh5r5jj0vjd1i7aljfp0lwpn49m1qc899xnba2jm29zlm8y6i",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~technomancy/fennel/archive/9813acfa65cd63bca54d333fa757cf2fb6406fa3.tar.gz"
+    "url": "https://git.sr.ht/~technomancy/fennel/archive/5a090a8001892e91dd6196aedcae1fb127b22d40.tar.gz"
   },
   {
     "date": "2024-04-26",

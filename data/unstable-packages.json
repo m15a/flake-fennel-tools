@@ -4,10 +4,10 @@
     "description": "The Fennel programming language",
     "owner": "~technomancy",
     "repo": "fennel",
-    "rev": "7dd6b6a47caa1d31df0a65ce2255f3f1053666a7",
-    "sha256": "14rxjzdhvaigglga3s1vc9yzvgk4q90wbv7d0yzzc6li4k6bcx9q",
+    "rev": "724fea060d93f6e567ad665d43c4195d3ec62405",
+    "sha256": "1nnrxky9idrs41sg27qv9lfgigkvb6bcx2jg7n09d06bm51rnlk2",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~technomancy/fennel/archive/7dd6b6a47caa1d31df0a65ce2255f3f1053666a7.tar.gz"
+    "url": "https://git.sr.ht/~technomancy/fennel/archive/724fea060d93f6e567ad665d43c4195d3ec62405.tar.gz"
   },
   {
     "date": "2024-04-26",

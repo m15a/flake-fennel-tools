@@ -1,13 +1,13 @@
 [
   {
-    "date": "2024-06-12",
+    "date": "2024-06-13",
     "description": "The Fennel programming language",
     "owner": "~technomancy",
     "repo": "fennel",
-    "rev": "4217c2fdd86a69aae020452a709b8a980cc654d1",
-    "sha256": "1dx2gd4bq1b2k0wd76vczj25kzd7sv54mks31dgpfsfgjlnfnd9l",
+    "rev": "50acbdf08ccd73a965e8200410fc518c363cb479",
+    "sha256": "0lx0wxcqn3ii7vbr3lwfm4ap452w35n4zj530n5hx98kdw5c31a0",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~technomancy/fennel/archive/4217c2fdd86a69aae020452a709b8a980cc654d1.tar.gz"
+    "url": "https://git.sr.ht/~technomancy/fennel/archive/50acbdf08ccd73a965e8200410fc518c363cb479.tar.gz"
   },
   {
     "date": "2024-04-26",
@@ -20,14 +20,14 @@
     "url": "https://git.sr.ht/~technomancy/fnlfmt/archive/ad9922bfe923d86f2456bc940ba94a205e741a7b.tar.gz"
   },
   {
-    "date": "2024-04-22",
+    "date": "2024-06-13",
     "description": "a test library for Fennel",
     "owner": "~technomancy",
     "repo": "faith",
-    "rev": "7264d02c12a990373e2931afb6afa14e6dcec980",
-    "sha256": "1hgcwh9yyivkbp77hx6bxdck160fjpn0jp40sjsmbl36vyshaw9i",
+    "rev": "6a3015b94f1948e8d5f8b6f1b4e26f9c05fa2a2d",
+    "sha256": "0wpwp1qiyzb03f95lbqxh0wdzg6v7gs066jn4i1m5pcl1y45scs3",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~technomancy/faith/archive/7264d02c12a990373e2931afb6afa14e6dcec980.tar.gz"
+    "url": "https://git.sr.ht/~technomancy/faith/archive/6a3015b94f1948e8d5f8b6f1b4e26f9c05fa2a2d.tar.gz"
   },
   {
     "date": "2024-06-09",

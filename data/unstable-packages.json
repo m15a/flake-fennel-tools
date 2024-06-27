@@ -30,13 +30,13 @@
     "url": "https://git.sr.ht/~technomancy/faith/archive/6a3015b94f1948e8d5f8b6f1b4e26f9c05fa2a2d.tar.gz"
   },
   {
-    "date": "2024-06-24",
+    "date": "2024-06-27",
     "description": "Language Server for Fennel",
     "owner": "~xerool",
     "repo": "fennel-ls",
-    "rev": "7550dbfd377823a8e6f3670dcd945dace4d7d494",
-    "sha256": "0z9s1zlfypx7qyq8pa3pndlkxsgfhv45pqwh60p9gs5x4bhh7wkh",
+    "rev": "0a5ca27dfa9e7b603ccc02d0ac2ded37b702623d",
+    "sha256": "02mmhxm47kxrikpgmynlkmkcms5gd31d7pmvaryg2i83wmxhnr87",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/7550dbfd377823a8e6f3670dcd945dace4d7d494.tar.gz"
+    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/0a5ca27dfa9e7b603ccc02d0ac2ded37b702623d.tar.gz"
   }
 ]

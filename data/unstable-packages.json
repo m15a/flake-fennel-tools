@@ -34,9 +34,9 @@
     "description": "Language Server for Fennel",
     "owner": "~xerool",
     "repo": "fennel-ls",
-    "rev": "d309c805415f06a6e032acc227d4b18e64d147b0",
-    "sha256": "056qxsrmx7y7nrwiqv01i3d3n7g9if6ylplqb7qm7d6jz91cqvj3",
+    "rev": "7ff4581e503a36d80256d50af13212fb31c4df1f",
+    "sha256": "1rkcfbc0rqqkhh3zfgs7s7phig2fwslqr1alqnz1za7x40c63zf4",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/d309c805415f06a6e032acc227d4b18e64d147b0.tar.gz"
+    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/7ff4581e503a36d80256d50af13212fb31c4df1f.tar.gz"
   }
 ]

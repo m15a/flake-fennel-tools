@@ -10,14 +10,14 @@
     "url": "https://git.sr.ht/~technomancy/fennel/archive/2401735c0a0cbd58f35f16dd7744e2bbd16ac6a6.tar.gz"
   },
   {
-    "date": "2024-09-15",
+    "date": "2024-09-19",
     "description": "A formatter for Fennel code",
     "owner": "~technomancy",
     "repo": "fnlfmt",
-    "rev": "5705f51c6b604ca1eb020bb86327eb2817b63fd9",
-    "sha256": "1j089mv4iismp4nhvl2k3h3m0kq1vgn7697pky7yp7whigvg9brs",
+    "rev": "72ab426d7a874bb5b015d30647817ef74b0c3f21",
+    "sha256": "1izn7d3dbgrn6mlsg3z623bq024lp5f93bfm00chz9z7z6avccrz",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~technomancy/fnlfmt/archive/5705f51c6b604ca1eb020bb86327eb2817b63fd9.tar.gz"
+    "url": "https://git.sr.ht/~technomancy/fnlfmt/archive/72ab426d7a874bb5b015d30647817ef74b0c3f21.tar.gz"
   },
   {
     "date": "2024-06-13",

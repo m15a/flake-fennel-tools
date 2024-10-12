@@ -1,13 +1,13 @@
 [
   {
-    "date": "2024-10-02",
+    "date": "2024-10-09",
     "description": "The Fennel programming language",
     "owner": "~technomancy",
     "repo": "fennel",
-    "rev": "c9392aae2f539772229419a9e8d69a6a8d313694",
-    "sha256": "0xsqnb04krrxslbsawjqjkxj9xmrabrcdmj5wpa2498zjin2a2qs",
+    "rev": "acaedf0b13f5fe952cf49c64590d94ba73b9746c",
+    "sha256": "1mj4h6q10295b6lzzanijzh0ynlia3wc7caz3w8bzjw2y237jg2y",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~technomancy/fennel/archive/c9392aae2f539772229419a9e8d69a6a8d313694.tar.gz"
+    "url": "https://git.sr.ht/~technomancy/fennel/archive/acaedf0b13f5fe952cf49c64590d94ba73b9746c.tar.gz"
   },
   {
     "date": "2024-09-19",
@@ -30,13 +30,13 @@
     "url": "https://git.sr.ht/~technomancy/faith/archive/6a3015b94f1948e8d5f8b6f1b4e26f9c05fa2a2d.tar.gz"
   },
   {
-    "date": "2024-10-09",
+    "date": "2024-10-12",
     "description": "Language Server for Fennel",
     "owner": "~xerool",
     "repo": "fennel-ls",
-    "rev": "e4e50548768f6de0e2cdb49b66c496a9f8197489",
-    "sha256": "1kgyqvmppfcyp6pjp3mj3qdr1j7dxc9mlv7qkgd50r6baj2igpim",
+    "rev": "ea46f368bea4c749eb11399d8c6abf6305925bde",
+    "sha256": "1i6mi1ck22szq7kpzaiv56mbnpcn5i4vrdm66hyrkkpwzx9r3zyl",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/e4e50548768f6de0e2cdb49b66c496a9f8197489.tar.gz"
+    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/ea46f368bea4c749eb11399d8c6abf6305925bde.tar.gz"
   }
 ]

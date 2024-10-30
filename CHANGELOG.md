@@ -13,6 +13,17 @@ used for rolling release. See [FlakeHub document][3] for more details.
 
 ## [Unreleased]
 
+### Bumped package versions
+
+- fennel: `1.5.1`
+- fennel-unstable: `1.5.2-dev`
+- faith: `0.2.0`
+- faith-unstable: `0.2.0` (they have not yet created dev version)
+- fnlfmt: `0.3.2`
+- fnlfmt-unstable: `0.3.3-dev`
+- fennel-ls: `0.1.3`
+- fennel-ls-unstable: `0.1.3-dev`
+
 ## [0.6.0] (2024-04-10)
 
 ### Changed

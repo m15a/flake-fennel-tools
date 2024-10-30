@@ -69,7 +69,7 @@ let
 in
 buildPackageSet {
   builder = buildFennel;
-  args = lib.cartesianProductOfSets {
+  args = lib.cartesianProduct {
     fennelVariant = fennelVariants;
     luaVariant = luaVariants;
   };

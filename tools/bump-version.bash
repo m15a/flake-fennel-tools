@@ -2,6 +2,16 @@
 
 set -euo pipefail
 
+case "${1:-}" in
+    --major|-M|--minor|-m|--patch|-p)
+        : OK
+        ;;
+    *)
+        echo >&2 "USAGE: $0 [--major|-M|--minor|-m|--patch|-p]"
+        exit 64
+        ;;
+esac
+
 changelog=CHANGELOG.md
 flakehub_workflow=.github/workflows/flakehub-publish-rolling.yml
 
@@ -16,10 +26,10 @@ extract_version_from_changelog() {
 }
 
 old="$(extract_version_from_changelog)"
-run nix run sourcehut:~m15a/bump.fnl -- --minor "$changelog"
+run nix run sourcehut:~m15a/bump.fnl -- "$1" "$changelog"
 new="$(extract_version_from_changelog)"
 
-new_minor="$(echo $new | cut -d. -f2)"
+new_minor="$(echo "$new" | cut -d. -f2)"
 
 sed -Ei "$flakehub_workflow" \
     -e "s|(rolling-minor: )[[:digit:]]+|\1$new_minor|"

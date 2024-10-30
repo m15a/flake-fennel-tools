@@ -13,6 +13,8 @@ used for rolling release. See [FlakeHub document][3] for more details.
 
 ## [Unreleased]
 
+## [0.6.1] (2024-10-30)
+
 ### Bumped package versions
 
 - fennel: `1.5.1`
@@ -97,6 +99,7 @@ used for rolling release. See [FlakeHub document][3] for more details.
   - Fenneldoc: version `1.0.1-dev`
 
 [Unreleased]: https://github.com/m15a/flake-fennel-tools/tree/HEAD
+[0.6.1]: https://github.com/m15a/flake-fennel-tools/tree/v0.6.1
 [0.6.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.6.0
 [0.5.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.5.0
 [0.4.0]: https://github.com/m15a/flake-fennel-tools/tree/v0.4.0

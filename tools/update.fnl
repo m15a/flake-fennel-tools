@@ -48,6 +48,7 @@
   `(when (not ,condition)
      ,(unpack body)))
 
+
 (macro assert/type [type* x]
   `(when (not= ,type* (type ,x))
      (error (.. ,type* " expected, got " (view ,x)))))
@@ -56,11 +57,13 @@
   `(when (not= nil ,x)
      (assert/type ,type? ,x)))
 
+
 (fn merge! [tbl* & tbls]
   (each [_ tbl (ipairs tbls)]
     (each [k v (pairs tbl)]
       (set (. tbl* k) v)))
   tbl*)
+
 
 (fn file->string [path]
   (case (io.open path)
@@ -76,6 +79,7 @@
           0 (string->file str path)
           _ (values nil (.. "failed to create directory for '" path "'")))
         (values nil msg))))
+
 
 (local log (let [mt {:level 1}]
              (set mt.__index mt)
@@ -96,6 +100,7 @@
                                (s:match "^[Ee][Rr][Rr][Oo][Rr]$") 3
                                (error (.. "Invalid LOG_LEVEL: " s))))]
                (setmetatable {: level} mt))))
+
 
 (local json {})
 
@@ -130,6 +135,7 @@
     true (os.exit)
     (_ msg) (log:error/exit "Failed to write '" path "': " msg)))
 
+
 (local http {})
 
 (fn http.get [uri ?header]
@@ -145,11 +151,13 @@
       (where body (= (header:get ":status") :200)) (values body header)
       (catch _ (values nil (.. "failed to get contents from " uri)))))) 
 
+
 (fn timestamp->date [timestamp]
   (assert/type :string timestamp)
   (case (timestamp:match "^%d%d%d%d%-%d%d%-%d%d")
     date date
     _ (error "Failed to convert timestamp to date")))
+
 
 (local nix {})
 
@@ -159,6 +167,7 @@
       (if (not= "" out)
           (pick-values 1 (out:gsub "\n+" ""))
           (values nil "failed to run nix-prefetch-url")))))
+
 
 (macro with-cache [{: expire : path} & body]
   (let [alive? (if (= expire nil)

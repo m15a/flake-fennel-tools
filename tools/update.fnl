@@ -58,6 +58,10 @@
      (assert/type ,type? ,x)))
 
 
+(fn clone [tbl]
+  (collect [k v (pairs tbl)]
+    (values k v)))
+
 (fn merge! [tbl* & tbls]
   (each [_ tbl (ipairs tbls)]
     (each [k v (pairs tbl)]
@@ -288,16 +292,21 @@
         (_ msg) (log:error/nil msg)))))
 
 (fn hub.package [self {: owner : repo : ref}]
-  (case-try (self:repo {: owner : repo})
-    repo_ (self:latest-commit {: owner : repo :ref (or ref repo_.default_branch)})
-    latest (doto (merge! repo_ latest)
-             (tset :default_branch nil)
-             (tset :time nil)
-             (tset :timestamp nil)
-             (tset :date (if latest.timestamp
-                             (timestamp->date latest.timestamp)
-                             latest.date)))
-    (catch _ nil)))
+  (let [known (doto (clone (. self.data (.. self.site "/" owner "/" repo)))
+                ;; Could be removed in the latest data.
+                (tset :description nil)
+                (tset :homepage nil)
+                (tset :license nil))]
+    (case-try (self:repo {: owner : repo})
+      repo_ (self:latest-commit {: owner : repo :ref (or ref repo_.default_branch)})
+      latest (doto (merge! known repo_ latest)
+               (tset :default_branch nil)
+               (tset :time nil)
+               (tset :timestamp nil)
+               (tset :date (if latest.timestamp
+                               (timestamp->date latest.timestamp)
+                               latest.date)))
+      (catch _ nil))))
 
 
 (local github (let [self {:site :github.com
@@ -411,13 +420,12 @@
 
 (*packages*:init!)
 (-> (icollect [_ pkg (stablepairs *packages*.data)]
-      (doto pkg
-        (merge! (case pkg.site
-                  :github.com (github:package pkg)
-                  :gitlab.com (gitlab:package pkg)
-                  (where (or :sr.ht :git.sr.ht)) (sourcehut:package pkg)
-                  :codeberg.org (codeberg:package pkg)
-                  _ {}))))
+      (case pkg.site
+        :github.com (github:package pkg)
+        :gitlab.com (gitlab:package pkg)
+        (where (or :sr.ht :git.sr.ht)) (sourcehut:package pkg)
+        :codeberg.org (codeberg:package pkg)
+        _ {}))
     (json.decoded->file/exit *packages*.path))
 
 ;; vim: lw+=unless

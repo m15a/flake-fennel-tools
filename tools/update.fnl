@@ -149,7 +149,7 @@
     (case-try (request:go)
       (header stream) (stream:get_body_as_string)
       (where body (= (header:get ":status") :200)) (values body header)
-      (catch _ (values nil (.. "failed to get contents from " uri)))))) 
+      (catch _ (values nil (.. "Failed to get contents from " uri)))))) 
 
 
 (fn timestamp->date [timestamp]
@@ -166,7 +166,7 @@
     (let [out (pipe:read :*a)]
       (if (not= "" out)
           (pick-values 1 (out:gsub "\n+" ""))
-          (values nil "failed to run nix-prefetch-url")))))
+          (values nil "Failed to run nix-prefetch-url")))))
 
 
 (macro with-cache [{: expire : path} & body]

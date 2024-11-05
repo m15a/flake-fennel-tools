@@ -390,12 +390,12 @@
                    :data {}})
 
 (fn *packages*.init! [self]
-  (set hub.data *packages*.data)
+  (set hub.data self.data)
   (case (json.file->decoded self.path)
     pkgs (each [_ pkg (ipairs pkgs)]
           (let [{: site : owner : repo} pkg
                 key (.. site "/" owner "/" repo)]
-            (tset *packages*.data key pkg)))
+            (tset self.data key pkg)))
     _ (log:error/exit "Failed to load packages")))
 
 (*packages*:init!)

@@ -254,8 +254,8 @@
   (assert/type :string owner)
   (assert/type :string repo)
   (assert/?type :string rev)
+  (log:info "Update: " self.site "/" owner "/" repo)
   (let [url (self.tarball-uri owner repo rev)]
-    (log:info "Update sha256 hash: " url)
     (case (nix.prefetch-url url)
       sha256 {: url : sha256}
       (_ msg) (log:error/nil (.. "Failed to get tarball hash: " msg)))))

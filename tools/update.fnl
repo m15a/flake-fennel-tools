@@ -264,7 +264,7 @@
   (assert/type :string owner)
   (assert/type :string repo)
   (let [key (.. self.site :/ owner :/ repo)
-        {: date : rev : url : sha256} (. self.data key)]
+        {: date : rev : url : sha256} (or (. self.data key) {})]
     {: date : rev : url : sha256}))
 
 (fn hub.latest-commit [self {: owner : repo : ref}]
@@ -292,7 +292,8 @@
         (_ msg) (log:error/nil msg)))))
 
 (fn hub.package [self {: owner : repo : ref}]
-  (let [known (doto (clone (. self.data (.. self.site "/" owner "/" repo)))
+  (let [known (doto (clone (let [key (.. self.site "/" owner "/" repo)]
+                             (or (. self.data key) {})))
                 ;; Could be removed in the latest data.
                 (tset :description nil)
                 (tset :homepage nil)

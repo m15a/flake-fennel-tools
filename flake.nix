@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -11,6 +13,7 @@
       self,
       nixpkgs,
       flake-utils,
+      treefmt-nix,
       ...
     }:
     let
@@ -29,6 +32,7 @@
             (import ./nix/ci.nix)
           ];
         };
+        treefmt = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       in
       rec {
         packages = {
@@ -69,7 +73,14 @@
           }
         ) packages;
 
-        checks = packages // pkgs.checks;
+        checks =
+          packages
+          // pkgs.checks
+          // {
+            format = treefmt.config.build.check self;
+          };
+
+        formatter = treefmt.config.build.wrapper;
 
         inherit (pkgs) devShells;
       }

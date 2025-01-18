@@ -1,13 +1,46 @@
 [
   {
-    "date": "2025-01-05",
+    "date": "2024-11-28",
+    "description": "a test library for Fennel",
+    "homepage": "https://git.sr.ht/~technomancy/faith",
+    "owner": "~technomancy",
+    "repo": "faith",
+    "rev": "103eeb17bd06cdbeababcd65287faabb5c744d3c",
+    "sha256": "1qd6i4gdgl4ra4ii7fnz0a4xgzsabb9ynn9k80jdpsmykqj05b6z",
+    "site": "git.sr.ht",
+    "url": "https://git.sr.ht/~technomancy/faith/archive/103eeb17bd06cdbeababcd65287faabb5c744d3c.tar.gz"
+  },
+  {
+    "date": "2025-01-18",
     "description": "The Fennel programming language",
     "homepage": "https://git.sr.ht/~technomancy/fennel",
     "owner": "~technomancy",
     "repo": "fennel",
-    "rev": "5fe5153f109e89669bca89cc176d04f8172fd51e",
-    "sha256": "0jhg1wd7rcbz5ndx3x7vilf74v5lfw7irvjh15g95r0rwa91336g",
+    "rev": "ef28e62dfefa36355e30e0db85cf108bcdfd7ada",
+    "sha256": "1n3jibgv4zk3n72xagsbi2imhpyli2c8j88h4ga3nbdvzz0gnhvz",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~technomancy/fennel/archive/5fe5153f109e89669bca89cc176d04f8172fd51e.tar.gz"
+    "url": "https://git.sr.ht/~technomancy/fennel/archive/ef28e62dfefa36355e30e0db85cf108bcdfd7ada.tar.gz"
+  },
+  {
+    "date": "2024-11-24",
+    "description": "A formatter for Fennel code",
+    "homepage": "https://git.sr.ht/~technomancy/fnlfmt",
+    "owner": "~technomancy",
+    "repo": "fnlfmt",
+    "rev": "283fd67e27199d741e4e713c2a2553a18522e8a9",
+    "sha256": "10fk16s54xc2qvqf98spm9cp29hrw5xhwg4s6lim0gn3xkv8ywai",
+    "site": "git.sr.ht",
+    "url": "https://git.sr.ht/~technomancy/fnlfmt/archive/283fd67e27199d741e4e713c2a2553a18522e8a9.tar.gz"
+  },
+  {
+    "date": "2025-01-17",
+    "description": "Language Server for Fennel",
+    "homepage": "https://git.sr.ht/~xerool/fennel-ls",
+    "owner": "~xerool",
+    "repo": "fennel-ls",
+    "rev": "bfc6d642376e5b4e9e9cfad9b0167cc4ced1cb9c",
+    "sha256": "0hjbj3znrjyrm4k20lffxssad19bvm49yfc21ncnwm9hgn8k4mys",
+    "site": "git.sr.ht",
+    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/bfc6d642376e5b4e9e9cfad9b0167cc4ced1cb9c.tar.gz"
   }
 ]

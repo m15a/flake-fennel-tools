@@ -33,14 +33,14 @@
     "url": "https://git.sr.ht/~technomancy/fnlfmt/archive/283fd67e27199d741e4e713c2a2553a18522e8a9.tar.gz"
   },
   {
-    "date": "2025-01-17",
+    "date": "2025-01-20",
     "description": "Language Server for Fennel",
     "homepage": "https://git.sr.ht/~xerool/fennel-ls",
     "owner": "~xerool",
     "repo": "fennel-ls",
-    "rev": "bfc6d642376e5b4e9e9cfad9b0167cc4ced1cb9c",
-    "sha256": "0hjbj3znrjyrm4k20lffxssad19bvm49yfc21ncnwm9hgn8k4mys",
+    "rev": "ae66e6d002a35ff69e9519e3f5b64fe8e2f57476",
+    "sha256": "0hnbp4l5ahgv9qn5wd9819gm8jfr5419l6lp5pdhlvf4piiybfws",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/bfc6d642376e5b4e9e9cfad9b0167cc4ced1cb9c.tar.gz"
+    "url": "https://git.sr.ht/~xerool/fennel-ls/archive/ae66e6d002a35ff69e9519e3f5b64fe8e2f57476.tar.gz"
   }
 ]

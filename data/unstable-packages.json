@@ -11,15 +11,15 @@
     "url": "https://git.sr.ht/~technomancy/faith/archive/103eeb17bd06cdbeababcd65287faabb5c744d3c.tar.gz"
   },
   {
-    "date": "2025-01-18",
+    "date": "2025-01-25",
     "description": "The Fennel programming language",
     "homepage": "https://git.sr.ht/~technomancy/fennel",
     "owner": "~technomancy",
     "repo": "fennel",
-    "rev": "ef28e62dfefa36355e30e0db85cf108bcdfd7ada",
-    "sha256": "1n3jibgv4zk3n72xagsbi2imhpyli2c8j88h4ga3nbdvzz0gnhvz",
+    "rev": "c057f58216c47a968709c08d4907685d2cff77c3",
+    "sha256": "1rq5j7hjhh17vrsii1sqqp3y3mz3yafv1kkrp8yrrxk0ixakcd81",
     "site": "git.sr.ht",
-    "url": "https://git.sr.ht/~technomancy/fennel/archive/ef28e62dfefa36355e30e0db85cf108bcdfd7ada.tar.gz"
+    "url": "https://git.sr.ht/~technomancy/fennel/archive/c057f58216c47a968709c08d4907685d2cff77c3.tar.gz"
   },
   {
     "date": "2024-11-24",

@@ -23,7 +23,7 @@ jobs:
         run: |
           nix develop .#ci-update -c bash -c ./tools/update.fnl
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v6
         with:
           file_pattern: 'data/*.json'
           commit_message: "auto: update unstable packages"
